@@ -1,0 +1,4 @@
+
+file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/InputData/A01/SimulationResults)
+file(COPY simulationParameters.txt vtpFiles DESTINATION ${CMAKE_BINARY_DIR}/InputData/A01)
+
