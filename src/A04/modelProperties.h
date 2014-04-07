@@ -18,35 +18,21 @@
 // The authors may be contacted via:
 // email: tagliapietra@gest.unipd.it
 
-#ifndef simulationManager_h
-#define simulationManager_h
+#ifndef modelProperties_h
+#define modelProperties_h
 
-#include <OpenSim/OpenSim.h>
+const std::string modelName = "BricardMechanism";
+const std::string rodGeometry = "cylinder.vtp";
 
-class simulationManager{
-public:
-  simulationManager(SimTK::State& initialStateFaked, OpenSim::Model & model, const std::map <std::string, double> parametersMap, const std::string integratorName, const std::string outDir);
-  void simulate();
-  double getParameter(std::string key) const;
+const double barMass = 1;
+const double barLength = 1;
+const double barRadius = 0.0;
+const SimTK::Vec3 barMassCenter(0);
 
-private:
-  void setParameters();
-  void initializeState();
-  void saveSimulationResults(const OpenSim::Manager& manager);  
+const std::string linkNamePrefix = "Link_";   
+const std::string jointNamePrefix = "Pin_";
 
-  double initialTime_;
-  double finalTime_;
-  double accuracy_;
-  double tolerance_;
-  double minStepSize_;
-  double maxStepSize_;
-
-  std::map <std::string, double> parametersMap_;
-  SimTK::State& initialState_;
-  OpenSim::Model osimModel_;
-  std::string integratorName_;
-  std::string outDir_;
-};
-
+//Gravity vector
+const SimTK::Vec3 gravityVector(0, -9.81, 0);
 
 #endif

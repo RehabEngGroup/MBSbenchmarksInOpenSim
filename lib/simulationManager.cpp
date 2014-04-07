@@ -30,8 +30,8 @@
 //    Public Constructors
 //***************************************************
   
-simulationManager::simulationManager(SimTK::State& fakedInitialState, OpenSim::Model& model, const std::map <std::string, double> parametersMap, const std::string outDir)
-:osimModel_(model), initialState_(fakedInitialState), parametersMap_(parametersMap), outDir_(outDir){
+simulationManager::simulationManager(SimTK::State& fakedInitialState, OpenSim::Model& model, const std::map <std::string, double> parametersMap, const std::string integratorName, const std::string outDir)
+:osimModel_(model), initialState_(fakedInitialState), parametersMap_(parametersMap), integratorName_(integratorName), outDir_(outDir){
   setParameters();
   initializeState();
 }
@@ -47,18 +47,21 @@ double simulationManager::getParameter(std::string key) const {
 
 void simulationManager::simulate() {
   std::clock_t startTime = clock();
-  
+  SimTK::Integrator* integrator;
   // Create the integrator
-  //SimTK::RungeKuttaMersonIntegrator integrator(osimModel_.getMultibodySystem());
-  SimTK::RungeKuttaFeldbergIntegrator integrator(osimModel_.getMultibodySystem());
-
-  integrator.setMinimumStepSize(minStepSize_);
-  integrator.setMaximumStepSize(maxStepSize_);
-  integrator.setAccuracy(accuracy_);
-  integrator.setConstraintTolerance(tolerance_);
+  if (!integratorName_.compare(std::string("RungeKuttaMerson")))
+    integrator = new SimTK::RungeKuttaMersonIntegrator(osimModel_.getMultibodySystem());
+  else //if(!integratorName_.compare(std::string("RungeKuttaFeldberg")))
+      integrator =new SimTK::RungeKuttaFeldbergIntegrator(osimModel_.getMultibodySystem());
+  
+  integrator->setMinimumStepSize(minStepSize_);
+  integrator->setMaximumStepSize(maxStepSize_);
+  integrator->setAccuracy(accuracy_);
+  integrator->setConstraintTolerance(tolerance_);
+  integrator->setProjectEveryStep(true);
   
   // Create the manager for the integrator
-  OpenSim::Manager manager(osimModel_, integrator);
+  OpenSim::Manager manager(osimModel_, *integrator);
   
   // Integrate from initial time to final time
   manager.setInitialTime(initialTime_);
@@ -69,9 +72,9 @@ void simulationManager::simulate() {
   manager.integrate(initialState_);
   
   cout << "Integrate routine time = " << 1.e3*(clock()-startTime)/CLOCKS_PER_SEC << " ms" << endl;
-  cout << "The maximum allowed error was " << integrator.getAccuracyInUse();
-  cout << " measured with " << integrator.getNumStepsTaken() << " output steps and";
-  cout << " a treshold value of " << integrator.getAccuracyInUse() << endl;
+  cout << "The maximum allowed error was " << integrator->getAccuracyInUse();
+  cout << " measured with " << integrator->getNumStepsTaken() << " output steps and";
+  cout << " a treshold value of " << integrator->getAccuracyInUse() << endl;
 
   saveSimulationResults(manager);
 }

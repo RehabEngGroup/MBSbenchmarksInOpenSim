@@ -19,8 +19,8 @@
 // email: tagliapietra@gest.unipd.it
 
 #include <iostream>
-using std::cout;
-using std::endl;
+    using std::cout;
+    using std::endl;
 
 #include "OpenSim/OpenSim.h"
 #include "simulationManager.h"
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   cout << "--------------------------------------------------------------------------------" << endl;
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
-  cout << " Problem A01: Simple Pendulum Mechanism Simulator" << endl;
+  cout << " Problem A02: N Four-Bar Mechanism Simulator" << endl;
   cout << " v. 1.0  Mar 2014" << endl;
   cout << " Copyright (C) Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
   if (argc < 1){
     cout << " ******************************************************************************" << endl;
     cout << " Multi-Body Systems Benchmark in Opensim: Simulator for Model A01" << endl;
-    cout << " Usage: ./SimplePendulumSimulate dataDirectory" << endl;
+    cout << " Usage: ./NFourBarMechanismSimulate dataDirectory" << endl;
     cout << "       dataDirectory must contain a vtpFiles folder" << endl;
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
@@ -47,21 +47,20 @@ int main(int argc, char **argv) {
   const std::string dataDir = argv[1];
   const std::string outputDir = dataDir+"/SimulationResults";
   
-  const std::string integratorName = "RungeKuttaMerson";
-
+  const std::string integratorName = "RungeKuttaFeldberg";
   // Load the Opensim Model
-  OpenSim::Model simplePendulumModel((dataDir+"/SimplePendulumMechanism.osim").c_str());
+  OpenSim::Model nFourBarMechanism((dataDir+"/40-FourBarMechanism.osim").c_str());
   
   // Add Force reporter and kinematics reporter to the model  
-  OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&simplePendulumModel);
+  OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&nFourBarMechanism);
   forceReporter->setName(std::string("forceReporter"));
-  simplePendulumModel.addAnalysis(forceReporter);
+  nFourBarMechanism.addAnalysis(forceReporter);
   
-  OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&simplePendulumModel);
-  pointKinematicsReporter -> setBodyPoint(std::string("Point"), SimTK::Vec3(0,0,0));
+  OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&nFourBarMechanism);
+  pointKinematicsReporter -> setBodyPoint(std::string("Link_1"), SimTK::Vec3(0,0.5,0));
   pointKinematicsReporter->setName(std::string("pointKinematicsReporter"));
-  pointKinematicsReporter ->setDescription("3d Kinematics of the point P1 (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
-  simplePendulumModel.addAnalysis(pointKinematicsReporter);
+  pointKinematicsReporter ->setDescription("3d Kinematics of the point B0 (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
+  nFourBarMechanism.addAnalysis(pointKinematicsReporter);
   
   // Read the configuration Parameter File
   std::map<std::string, double> parametersMap;
@@ -77,7 +76,7 @@ int main(int argc, char **argv) {
   
   SimTK::State fakedInitialState;
   
-  simulationManager manager(fakedInitialState, simplePendulumModel, parametersMap, integratorName, outputDir);
+  simulationManager manager(fakedInitialState, nFourBarMechanism, parametersMap, integratorName, outputDir);
   manager.simulate();
   
   cout << "Simulation ends....C H E C K   T H E   O U T P U T   F O L D E R!!!" << endl;

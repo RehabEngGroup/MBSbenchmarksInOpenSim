@@ -18,35 +18,25 @@
 // The authors may be contacted via:
 // email: tagliapietra@gest.unipd.it
 
-#ifndef simulationManager_h
-#define simulationManager_h
+#ifndef modelProperties_h
+#define modelProperties_h
 
-#include <OpenSim/OpenSim.h>
+const int nWindow = 40;
 
-class simulationManager{
-public:
-  simulationManager(SimTK::State& initialStateFaked, OpenSim::Model & model, const std::map <std::string, double> parametersMap, const std::string integratorName, const std::string outDir);
-  void simulate();
-  double getParameter(std::string key) const;
+const std::string modelName = "40-FourBarMechanism";
+const std::string rodGeometry = "cylinder.vtp";
 
-private:
-  void setParameters();
-  void initializeState();
-  void saveSimulationResults(const OpenSim::Manager& manager);  
+const double barLength = 1;
+const double barMass = 1;
+const double defaultSpeed = -1;
+const SimTK::Vec3 barMassCenter(0);
 
-  double initialTime_;
-  double finalTime_;
-  double accuracy_;
-  double tolerance_;
-  double minStepSize_;
-  double maxStepSize_;
+// Set the name prefix for bodies and joints
+const std::string linkNamePrefix = "Link_";   
+const std::string realJointNamePrefix = "B";
+const std::string fakeJointNamePrefix = "VB";
 
-  std::map <std::string, double> parametersMap_;
-  SimTK::State& initialState_;
-  OpenSim::Model osimModel_;
-  std::string integratorName_;
-  std::string outDir_;
-};
-
+//Gravity vector
+const SimTK::Vec3 gravityVector(0, -9.81, 0);
 
 #endif

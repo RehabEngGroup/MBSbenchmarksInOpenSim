@@ -1,10 +1,10 @@
 ##
 
-option(BUILD_A01_SIMPLE_PENDULUM "Build A01 simple pendlum example" ON)
-if(BUILD_A01_SIMPLE_PENDULUM)
+option(BUILD_A02_N_FOUR_BAR_MECHANISM "Build A02 nfour bar mechanism example" ON)
+if(BUILD_A02_N_FOUR_BAR_MECHANISM)
 
     # Define project
-    project (A01_SimplePendulum)
+    project (A02_NFourBarMechanism)
 
     include_directories(${OPENSIM_INCLUDE_DIRS} ${SIMTK_INCLUDE_DIRS})
     include_directories(${SIMULATION_MANAGER_INCLUDE_DIRS})
@@ -17,8 +17,8 @@ if(BUILD_A01_SIMPLE_PENDULUM)
     source_group("Headers" FILES ${A01_CREATE_MODEL_HEADER_FILES})
     source_group("Sources" FILES ${A01_CREATE_MODEL_SOURCE_FILES})
 
-    add_executable(SimplePendulumCreateModel ${A01_CREATE_MODEL_HEADER_FILES} ${A01_CREATE_MODEL_SOURCE_FILES})
-    target_link_libraries(SimplePendulumCreateModel ${OPENSIM_LIBRARIES})
+    add_executable(NFourBarMechanismCreateModel ${A01_CREATE_MODEL_HEADER_FILES} ${A01_CREATE_MODEL_SOURCE_FILES})
+    target_link_libraries(NFourBarMechanismCreateModel ${OPENSIM_LIBRARIES})
 
     ## Simulate
 
@@ -26,8 +26,8 @@ if(BUILD_A01_SIMPLE_PENDULUM)
 
     source_group("Sources" FILES ${A01_SIMULATE_SOURCE_FILES})
 
-    add_executable(SimplePendulumSimulate ${A01_SIMULATE_SOURCE_FILES})
-    target_link_libraries(SimplePendulumSimulate simulationManager ${OPENSIM_LIBRARIES})
+    add_executable(NFourBarMechanismSimulate ${A01_SIMULATE_SOURCE_FILES})
+    target_link_libraries(NFourBarMechanismSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
 

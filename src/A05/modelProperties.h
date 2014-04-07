@@ -18,35 +18,22 @@
 // The authors may be contacted via:
 // email: tagliapietra@gest.unipd.it
 
-#ifndef simulationManager_h
-#define simulationManager_h
+#ifndef modelProperties_h
+#define modelProperties_h
 
-#include <OpenSim/OpenSim.h>
+const std::string modelName = "FlyballGovernor";
 
-class simulationManager{
-public:
-  simulationManager(SimTK::State& initialStateFaked, OpenSim::Model & model, const std::map <std::string, double> parametersMap, const std::string integratorName, const std::string outDir);
-  void simulate();
-  double getParameter(std::string key) const;
+const double barRadius = 0.0;
+const SimTK::Vec3 barMassCenter(0);
+const double density = 3000.0; // Kg/m^3
+const double defaultSpeed = 2*SimTK::Pi;
 
-private:
-  void setParameters();
-  void initializeState();
-  void saveSimulationResults(const OpenSim::Manager& manager);  
+//Create spring-damper elements
+const double springK = 8e5;
+const double damperC = 4e4;
+const double springNaturalLength = 0.5;
 
-  double initialTime_;
-  double finalTime_;
-  double accuracy_;
-  double tolerance_;
-  double minStepSize_;
-  double maxStepSize_;
-
-  std::map <std::string, double> parametersMap_;
-  SimTK::State& initialState_;
-  OpenSim::Model osimModel_;
-  std::string integratorName_;
-  std::string outDir_;
-};
-
+//Gravity vector
+const SimTK::Vec3 gravityVector(0, -9.81, 0);
 
 #endif

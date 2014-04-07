@@ -7,7 +7,9 @@
 #  OPENSIM_DEFINITIONS - Compiler switches required for using OpenSim
 
 
-set(OPENSIM_POSSIBLE_DIRECTORIES 
+set(OPENSIM_POSSIBLE_DIRECTORIES
+	~/ThirdPartyPrograms/opensim31
+	~/ThirdPartyPrograms/Opensim/Install
 	~/Programs/opensim
 	$ENV{OPENSIM_HOME}
 	"C:/OpenSim\ 3.0/"

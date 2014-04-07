@@ -30,15 +30,15 @@ int main(int argc, char **argv) {
   cout << "--------------------------------------------------------------------------------" << endl;
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
-  cout << " Problem A01: Simple Pendulum Mechanism Simulator" << endl;
+  cout << " Problem A05: Flyball Governor Simulator" << endl;
   cout << " v. 1.0  Mar 2014" << endl;
   cout << " Copyright (C) Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
 
   if (argc < 1){
     cout << " ******************************************************************************" << endl;
-    cout << " Multi-Body Systems Benchmark in Opensim: Simulator for Model A01" << endl;
-    cout << " Usage: ./SimplePendulumSimulate dataDirectory" << endl;
+    cout << " Multi-Body Systems Benchmark in Opensim: Simulator for Model A05" << endl;
+    cout << " Usage: ./FlyballGovernorSimulate dataDirectory" << endl;
     cout << "       dataDirectory must contain a vtpFiles folder" << endl;
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
@@ -47,21 +47,22 @@ int main(int argc, char **argv) {
   const std::string dataDir = argv[1];
   const std::string outputDir = dataDir+"/SimulationResults";
   
-  const std::string integratorName = "RungeKuttaMerson";
+  const std::string integratorName = "RungeKuttaFeldberg";
 
   // Load the Opensim Model
-  OpenSim::Model simplePendulumModel((dataDir+"/SimplePendulumMechanism.osim").c_str());
+  OpenSim::Model flyballGovernor((dataDir+"/FlyballGovernor.osim").c_str());
   
   // Add Force reporter and kinematics reporter to the model  
-  OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&simplePendulumModel);
+  OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&flyballGovernor);
   forceReporter->setName(std::string("forceReporter"));
-  simplePendulumModel.addAnalysis(forceReporter);
+  flyballGovernor.addAnalysis(forceReporter);
   
-  OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&simplePendulumModel);
-  pointKinematicsReporter -> setBodyPoint(std::string("Point"), SimTK::Vec3(0,0,0));
+  
+  OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&flyballGovernor);
+  pointKinematicsReporter -> setBodyPoint(std::string("base"), SimTK::Vec3(0,0,0));
   pointKinematicsReporter->setName(std::string("pointKinematicsReporter"));
-  pointKinematicsReporter ->setDescription("3d Kinematics of the point P1 (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
-  simplePendulumModel.addAnalysis(pointKinematicsReporter);
+  pointKinematicsReporter ->setDescription("3d Kinematics of the coordinate s (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
+  flyballGovernor.addAnalysis(pointKinematicsReporter);
   
   // Read the configuration Parameter File
   std::map<std::string, double> parametersMap;
@@ -77,7 +78,7 @@ int main(int argc, char **argv) {
   
   SimTK::State fakedInitialState;
   
-  simulationManager manager(fakedInitialState, simplePendulumModel, parametersMap, integratorName, outputDir);
+  simulationManager manager(fakedInitialState, flyballGovernor, parametersMap, integratorName, outputDir);
   manager.simulate();
   
   cout << "Simulation ends....C H E C K   T H E   O U T P U T   F O L D E R!!!" << endl;
