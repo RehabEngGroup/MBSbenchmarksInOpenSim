@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,11 +33,10 @@ int main(int argc, char **argv) {
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
   cout << " Problem A01: Simple Pendulum Mechanism Model Creator" << endl;
-  cout << " v. 1.0  Mar 2014" << endl;
-  cout << " Copyright (C) Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
+  cout << " Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
   
-  if (argc < 1){
+  if (argc != 2){
     cout << " ******************************************************************************" << endl;
     cout << " Multi-Body System Benchmark in OpenSim: Creator for Model A01" << endl;
     cout << " Usage: ./SimplePendulumCreateModel dataDirectory" << endl;
@@ -47,12 +46,12 @@ int main(int argc, char **argv) {
   }
   
   const std::string dataDir = argv[1];
-  cout << "Starting modelling process using data directory:" + dataDir << endl;
+  cout << "Data directory:" + dataDir << endl;
 
   // Create model and set name and authors
   OpenSim::Model simplePendulum;
   simplePendulum.setName(modelName);
-  simplePendulum.setAuthors("L.Tagliapietra, M. Vivian, M.Sartori, M.Reggiani");
+  simplePendulum.setAuthors("L.Tagliapietra, M. Vivian, M.Reggiani");
   
   // Get a reference to the model's ground body
   OpenSim::Body& ground = simplePendulum.getGroundBody(); 
@@ -61,31 +60,29 @@ int main(int argc, char **argv) {
   SimTK::Inertia pointInertia = SimTK::Inertia(0,0,0);
   OpenSim::Body *point = new OpenSim::Body("Point", pointMass, pointMassCenter, pointInertia);
   
-  OpenSim::DisplayGeometry geom1(sphereGeometry);
-  geom1.setScaleFactors(SimTK::Vec3(0.1,0.1,0.1));
-  geom1.setName("sphere");
-  point->updDisplayer()->updGeometrySet().insert(0,geom1);  
+  OpenSim::DisplayGeometry pointGeom(sphereGeometry);
+  pointGeom.setScaleFactors(SimTK::Vec3(0.1,0.1,0.1));
+  pointGeom.setName("pointMass");
+  point->updDisplayer()->updGeometrySet().insert(0,pointGeom);  
   
-  OpenSim::DisplayGeometry geom2(rodGeometry);
-  geom2.setScaleFactors(SimTK::Vec3(0.01,1,0.01));
-  geom2.setName("rod");
+  OpenSim::DisplayGeometry rodGeom(rodGeometry);
+  rodGeom.setScaleFactors(SimTK::Vec3(0.01,pendulumLength,0.01));
+  rodGeom.setName("rod");
   SimTK::Transform trans = SimTK::Transform(SimTK::Vec3(0,pendulumLength/2,0));
-  geom2.setTransform(trans);
-  point->updDisplayer()->updGeometrySet().insert(1,geom2);  
+  rodGeom.setTransform(trans);
+  point->updDisplayer()->updGeometrySet().insert(1,rodGeom);  
  
   SimTK::Vec3 locationInParent(0), locationInBody(0, pendulumLength,0), orientationInParent(0), orientationInBody(0);
   
-  OpenSim::PinJoint *aJoint = new OpenSim::PinJoint("theta", ground, locationInParent, orientationInParent, *point, locationInBody, orientationInBody); 
-  OpenSim::CoordinateSet& aCoordinateSet = aJoint -> upd_CoordinateSet();
-  aCoordinateSet[0].setName("theta");
-  aCoordinateSet[0].setDefaultValue(defaultAngle);
+  OpenSim::PinJoint *thetaJoint = new OpenSim::PinJoint("theta", ground, locationInParent, orientationInParent, *point, locationInBody, orientationInBody); 
+  OpenSim::CoordinateSet& thetaCoordinateSet = thetaJoint -> upd_CoordinateSet();
+  thetaCoordinateSet[0].setName("theta");
+  thetaCoordinateSet[0].setDefaultValue(defaultAngle);
   simplePendulum.addBody(point);
 
-  cout << "Model creation process ends" << endl;
-  
   // Save to file the model
-  cout << "Model saving to file process starts" << endl;
   simplePendulum.print((dataDir+"/"+modelName+std::string(".osim")).c_str());
-  cout << "Model saving to file process ends" << endl;
+
+  cout << "Model stored in: " << dataDir << "/" << modelName << ".osim" << endl;
 }
 

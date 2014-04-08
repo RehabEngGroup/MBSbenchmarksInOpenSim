@@ -10,6 +10,7 @@
 set(OPENSIM_POSSIBLE_DIRECTORIES
 	~/ThirdPartyPrograms/opensim31
 	~/ThirdPartyPrograms/Opensim/Install
+	~/ThirdPartyPrograms/OpenSim/Install
 	~/Programs/opensim
 	$ENV{OPENSIM_HOME}
 	"C:/OpenSim\ 3.0/"

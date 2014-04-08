@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

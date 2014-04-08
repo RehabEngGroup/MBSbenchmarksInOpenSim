@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013, 2014  Luca Tagliapietra Michele Vivian Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,11 +39,10 @@ int main(int argc, char **argv) {
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
   cout << " Problem A03: Andrew's Mechanism Model Creator" << endl;
-  cout << " v. 1.0  Mar 2014" << endl;
-  cout << " Copyright (C) Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
+  cout << " Copyright (C) 2013, 2014  Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
   
-  if (argc < 1){
+  if (argc != 2){
     cout << " ******************************************************************************" << endl;
     cout << " Multi-Body System Benchmark in OpenSim: Creator for Model A03" << endl;
     cout << " Usage: ./AndrewsMechanismCreateModel dataDirectory" << endl;
@@ -53,11 +52,11 @@ int main(int argc, char **argv) {
   }
   
   const std::string dataDir = argv[1];
-  cout << "Starting modelling process using data directory:" + dataDir << endl;
+  cout << "Data directory: " + dataDir << endl;
 
   OpenSim::Model andrewsMechanism;
   andrewsMechanism.setName("Andrew's Mechanism");
-  andrewsMechanism.setAuthors("L.Tagliapietra, M. Vivian, M.Sartori, M.Reggiani");
+  andrewsMechanism.setAuthors("L.Tagliapietra, M. Vivian, M.Reggiani");
   
   // Get a reference to the model's ground body
   OpenSim::Body& ground = andrewsMechanism.getGroundBody(); 
@@ -75,10 +74,10 @@ int main(int argc, char **argv) {
   
   //Set visualization properties
   OF->addDisplayGeometry(rodGeometry);
-  OpenSim::VisibleObject* vis = OF->updDisplayer();
-  vis -> updTransform() =  trans;
-  vis -> setScaleFactors(SimTK::Vec3(0.001,OFlength, 0.001));
-  vis -> setDisplayPreference(OpenSim::DisplayGeometry::DisplayPreference(1));
+  OpenSim::VisibleObject* visOF = OF->updDisplayer();
+  visOF -> updTransform() =  trans;
+  visOF -> setScaleFactors(SimTK::Vec3(0.001,OFlength, 0.001));
+  visOF -> setDisplayPreference(OpenSim::DisplayGeometry::DisplayPreference(1));
   
   SimTK::Vec3 orientationInParent(0), orientationInBody(0);
   OpenSim::PinJoint *OJoint = new OpenSim::PinJoint("joint_O", ground, SimTK::Vec3(0), orientationInParent, *OF, SimTK::Vec3(-OFlength/2,0,0), orientationInBody); 
@@ -94,7 +93,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *EF = new OpenSim::Body("EF", EFmass, EFMassCenter, EFbarInertia);
   
   //Set visualization properties
-  EF->addDisplayGeometry("../../InputFiles/vtpFiles/cylinder.vtp");
+  EF->addDisplayGeometry(rodGeometry);
   OpenSim::VisibleObject* visEF = EF->updDisplayer();
   visEF -> updTransform() =  trans;
   visEF -> setScaleFactors(SimTK::Vec3(0.001,EFlength, 0.001));
@@ -113,7 +112,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *GE = new OpenSim::Body("GE", GEmass, GEMassCenter, GEbarInertia);
   
   //Set visualization properties
-  GE->addDisplayGeometry("../../InputFiles/vtpFiles/cylinder.vtp");
+  GE->addDisplayGeometry(rodGeometry);
   OpenSim::VisibleObject* visGE = GE->updDisplayer();
   visGE -> updTransform() =  trans;
   visGE -> setScaleFactors(SimTK::Vec3(0.001,GElength, 0.001));
@@ -132,7 +131,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *AG = new OpenSim::Body("AG", AGmass, AGMassCenter, AGbarInertia);
   
   //Set visualization properties
-  AG->addDisplayGeometry("../../InputFiles/vtpFiles/cylinder.vtp");
+  AG->addDisplayGeometry(rodGeometry);
   OpenSim::VisibleObject* visAG = AG->updDisplayer();
   visAG -> updTransform() =  trans;
   visAG -> setScaleFactors(SimTK::Vec3(0.001,AGlength, 0.001));
@@ -156,7 +155,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *HE = new OpenSim::Body("HE", HEmass, HEMassCenter, HEbarInertia);
   
   //Set visualization properties
-  HE->addDisplayGeometry("../../InputFiles/vtpFiles/cylinder.vtp");
+  HE->addDisplayGeometry(rodGeometry);
   OpenSim::VisibleObject* visHE = HE->updDisplayer();
   visHE -> updTransform() =  trans;
   visHE -> setScaleFactors(SimTK::Vec3(0.001,HElength, 0.001));
@@ -175,7 +174,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *AH = new OpenSim::Body("AH", AHmass, AHMassCenter, AHbarInertia);
   
   //Set visualization properties
-  AH->addDisplayGeometry("../../InputFiles/vtpFiles/cylinder.vtp");
+  AH->addDisplayGeometry(rodGeometry);
   OpenSim::VisibleObject* visAH = AH->updDisplayer();
   visAH -> updTransform() =  trans;
   visAH -> setScaleFactors(SimTK::Vec3(0.001,AHlength, 0.001));
@@ -199,7 +198,7 @@ int main(int argc, char **argv) {
   OpenSim::Body *BDE = new OpenSim::Body("BDE", BDEmass, BDEMassCenter, BDEInertia);
   
   //Set visualization properties
-  BDE->addDisplayGeometry("../../InputFiles/vtpFiles/triangle.vtp");
+  BDE->addDisplayGeometry(triangleGeometry);
   OpenSim::VisibleObject* visBDE = BDE->updDisplayer();
   visBDE -> updTransform() =  trans;
   visBDE -> setScaleFactors(SimTK::Vec3(0.01, 0.01, 0.0005));
@@ -219,14 +218,12 @@ int main(int argc, char **argv) {
   //********************************
   // Add the spring between BDE and ground
   //********************************  
-  OpenSim::PointToPointSpring *spr1 = new OpenSim::PointToPointSpring(std::string("ground"), SimTK::Vec3(0.014,0.072,0), std::string("BDE"), SimTK::Vec3(-BElength/2+0.018, 0.02,0), springK, springRestLength);
-  andrewsMechanism.addComponent(spr1);
-  
-  cout << "Model creation process ends" << endl;
+  OpenSim::PointToPointSpring *spring = new OpenSim::PointToPointSpring(std::string("ground"), SimTK::Vec3(0.014,0.072,0), std::string("BDE"), SimTK::Vec3(-BElength/2+0.018, 0.02,0), springK, springRestLength);
+  andrewsMechanism.addComponent(spring);
   
   // Save to file the model
-  cout << "Model saving to file process starts" << endl;
   andrewsMechanism.print((dataDir+"/"+modelName+std::string(".osim")).c_str());
-  cout << "Model saving to file process ends" << endl;
+  
+  cout << "Model stored in: " << dataDir << "/" << modelName << ".osim" << endl;
 }
 
