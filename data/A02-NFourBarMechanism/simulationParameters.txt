@@ -1,6 +1,6 @@
 Initial Time : 0
 Final Time : 20
-Accuracy : 1.0e-9
+Accuracy : 1.0e-12
 Tolerance : 1.0e-9
-Minimum Step Size : 0.0001
-Maximum Step Size : 0.05
+Minimum Step Size : 0.00001
+Maximum Step Size : 0.02
