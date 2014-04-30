@@ -52,13 +52,13 @@ const std::string triangleGeometry = "triangle.vtp";
   const double HElength = 0.02;
   const double AHlength = 0.04;  
   
-  const double OAngleAtZero = - 0.06934;
+  const double OAngleAtZero = - 0.0620;
   const double FAngleAtZero = 0.0;
-  const double E1AngleAtZero = -45.82/180*(SimTK::Pi);
-  const double GAngleAtZero = 77.35/180*(SimTK::Pi);
-  const double E2AngleAtZero = 61.30/180*(SimTK::Pi);
-  const double HAngleAtZero = -77.24/180*(SimTK::Pi);
-  const double E3AngleAtZero = -60.36/180*(SimTK::Pi);
+  const double E1AngleAtZero = -(SimTK::Pi - 2.3429420);
+  const double GAngleAtZero = (SimTK::Pi - 1.7936420);
+  const double E2AngleAtZero = 1.069936;
+  const double HAngleAtZero = -(SimTK::Pi - 1.7933603);
+  const double E3AngleAtZero = -(SimTK::Pi - 2.0879963);
   
   // Mass center of each body
   const SimTK::Vec3 OFMassCenter(0.00092 - OFlength/2, 0, 0);
