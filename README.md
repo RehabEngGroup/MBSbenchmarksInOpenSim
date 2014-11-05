@@ -2,11 +2,11 @@
 
 MBS-BOS package is a set of programs that implement the Multi-Body Systems (MBS) Benchmark [[1]] using the OpenSim APIs [[2]]. 
 
-The first objective is to compare the outcomes of these simulations with the validated reference solutions available in the MBS Benchmark package.
+The first objective is to compare output from these simulations with the validated reference solutions available in the MBS Benchmark package.
 The second objective is to provide C++ solutions for common problems that can be found in the implementation of simulations of multi-body systems.
 
 ### Latest Version
-MBS-BOS is an open project hosted in GitHub: 
+MBS-BOS is an open project, released under GNU General Public License and hosted in GitHub: 
 
 > https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim
 
@@ -14,7 +14,7 @@ MBS-BOS is an open project hosted in GitHub:
 Descriptions of the five benchmark problems are available as PDF files in the *docs* directory available with the code.  
 
 ### Requirements
-Before compiling MBS-BOS you need to install:
+To compile MBS-BOS you need the following software:
 
 1. OpenSim v. 3.2 [download][2]
 
@@ -28,9 +28,7 @@ Windows users also need to install:
 
 ####Configure OPENSIM_HOME environment variable
 
-The succesfull compilation of MBS-BOS requires OpenSim libraries. If you installed OpenSim in a custom folder, plese set the OPENSIM_HOME environment variable.
-
-Procedure:
+The successful compilation of MBS-BOS requires OpenSim libraries. If you installed OpenSim in a custom folder, please set the OPENSIM_HOME environment variable as follow:
 
 1.Open a terminal and type
 
@@ -59,6 +57,7 @@ Procedure:
 4.Create a build directory inside the MBS-BOS folder
 
     mkdir build
+	
 5.Change your directory to build and run cmake:
 
     cd build
@@ -95,14 +94,14 @@ Second you run the simulation:
 
     ./SimplePendulumSimulate ../data/A01-SimplePendulum
 
-After the succesfull execution of the simulation, the output data files are available in:  
+After the successful execution of the simulation, the output data files are available in:  
 
     yourFolder/build/data/A01-SimplePendulum/SimulationResults
 
 
 ###MBS-BOS in Windows
 
-The succesfull compilation of MBS-BOS requires OpenSim libraries. If you installed OpenSim in a custom folder, plese set the OPENSIM_HOME environment variable through the Windows Control Panel.
+The successful compilation of MBS-BOS requires OpenSim libraries. If you installed OpenSim in a custom folder, please set the OPENSIM_HOME environment variable through the Windows Control Panel.
 
 ####MBS-BOS Installation
 
@@ -114,7 +113,7 @@ The succesfull compilation of MBS-BOS requires OpenSim libraries. If you install
     
 3.Create a build directory inside the MBS-BOS folder
 
-4.Open Cmake GUI, select yours source and build directories and the Visual Studio version you are planning to use. 
+4.Open Cmake GUI, select yours source and build directories and the Visual Studio version you are planning to use. If you have downloaded OpenSim binary you MUST select in Release as CompilationMode, Debug is not going to work.
 
 5.Click on Generate
 
@@ -151,7 +150,7 @@ Second you run the simulation:
 
     SimplePendulumSimulate.exe ..\..\data\A01-SimplePendulum
 
-After the succesfull execution of the simulation, the output data files are available in:  
+After the successful execution of the simulation, the output data files are available in:  
 
     yourFolder\build\data\A01-SimplePendulum\SimulationResults
 
@@ -159,7 +158,7 @@ After the succesfull execution of the simulation, the output data files are avai
 ### Licensing
 Please see the file called license.
 
-    Multi-Body Systems Benchmark in OpenSim (MBS-BOS) Copyright (C) 2013-2014 Luca Tagliapietra, Michele Vivian and Monica Reggiani.
+    Multi-Body Systems Benchmark in OpenSim (MBS-BOS) Copyright (C) 2013-2014 Luca Tagliapietra, Michele Vivian, and Monica Reggiani.
     
     MBS-BOS is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
     
