@@ -40,6 +40,8 @@ private:
   double tolerance_;
   double minStepSize_;
   double maxStepSize_;
+	double internalStepLimit_;
+	double reportingStep_;
 
   std::map <std::string, double> parametersMap_;
   SimTK::State& initialState_;

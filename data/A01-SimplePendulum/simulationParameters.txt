@@ -1,6 +1,8 @@
 Initial Time : 0
-Final Time : 2000
+Final Time : 10
 Accuracy : 1.0e-12
 Tolerance : 1.0e-9
-Minimum Step Size : 0.01
-Maximum Step Size : 0.01
+Minimum Step Size : 0.000001
+Maximum Step Size : 0.001
+Internal Step Limit : 2000000
+Reporting Step : 0.01

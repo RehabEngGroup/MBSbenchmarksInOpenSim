@@ -90,6 +90,8 @@ void simulationManager::setParameters(){
   tolerance_   = parametersMap_.find("Tolerance")->second;
   minStepSize_ = parametersMap_.find("Minimum Step Size")->second;
   maxStepSize_ = parametersMap_.find("Maximum Step Size")->second;
+	internalStepLimit_ = parametersMap_.find("Internal Step Limit")->second;
+	reportingStep_ = parametersMap_.find("Reporting Step")->second;
 }
 
 void simulationManager::initializeState() {
