@@ -104,23 +104,28 @@ void simulationManager::initializeState() {
 void simulationManager::saveSimulationResults(const OpenSim::Manager& manager){
   // Save the model to a file: now we save the modified model 
   cout<<"Saving files..."<<endl;
-  osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Position);
-  
-  OpenSim::Storage statesDegrees(manager.getStateStorage());
+  //osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Position);
+
   OpenSim::Storage statesRadians(manager.getStateStorage());
-  statesDegrees.print(outDir_ + "/StatesResults.sto");
-  osimModel_.updSimbodyEngine().convertRadiansToDegrees(statesDegrees);
- 
+	OpenSim::Storage::printResult(&statesRadians, "states", outDir_, reportingStep_, ".sto");
+	//statesRadians.print(outDir_ + "/StatesResults.sto");
+
+	OpenSim::Storage statesDegrees(manager.getStateStorage());
+	osimModel_.updSimbodyEngine().convertRadiansToDegrees(statesDegrees);
   statesDegrees.setWriteSIMMHeader(true);
-  statesDegrees.print(outDir_ + "/StatesResults_Degree.mot");
-  
+	OpenSim::Storage::printResult(&statesDegrees, "statesDeg", outDir_, reportingStep_, ".sto");
+//  statesDegrees.print(outDir_ + "/StatesResults_Degree.mot");
+
   // Save the Point Kinematic Position
-  OpenSim::Analysis &tmp = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("pointKinematicsReporter")));
-  OpenSim::PointKinematics* pointKinematicReporter=dynamic_cast<OpenSim::PointKinematics*>(&tmp);
-  pointKinematicReporter->getPositionStorage()->print(outDir_+"/pointKinematicsPositionResults.mot");
-  
+	osimModel_.updAnalysisSet().get("pointKinematicsReporter").printResults("pointKinematics", outDir_, reportingStep_);
+ // OpenSim::Analysis &tmp = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("pointKinematicsReporter")));
+	//tmp.p
+ // OpenSim::PointKinematics* pointKinematicReporter=dynamic_cast<OpenSim::PointKinematics*>(&tmp);
+ // pointKinematicReporter->getPositionStorage()->print(outDir_+"/pointKinematicsPositionResults.mot");
+
   // Save the forces
-  OpenSim::Analysis &tmp2 = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("forceReporter")));
-  OpenSim::ForceReporter* forceReporter = dynamic_cast<OpenSim::ForceReporter*>(&tmp2);
-  forceReporter->getForceStorage().print(outDir_ + "/forcesResults.mot");
+	osimModel_.updAnalysisSet().get("forceReporter").printResults("forces", outDir_, reportingStep_);
+  //OpenSim::Analysis &tmp2 = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("forceReporter")));
+  //OpenSim::ForceReporter* forceReporter = dynamic_cast<OpenSim::ForceReporter*>(&tmp2);
+  //forceReporter->getForceStorage().print(outDir_ + "/forcesResults.mot");
 }
