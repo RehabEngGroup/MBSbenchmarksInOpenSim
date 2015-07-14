@@ -1,6 +1,6 @@
 
 MBS Benchmark A02: N Four-Bar Mechanism
-==================================
+=======================================
   
 Benchmark Objective
 -------------------

@@ -2,7 +2,7 @@
 
 
 MBS Benchmarks in OpenSim
-******
+*************************
 
 .. only:: html or latex
 
