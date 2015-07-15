@@ -31,7 +31,7 @@ MBS Benchmarks in Opensim have been developed by the `Rehabilitation Engineering
 
     .. list-table::
 
-        * - .. image:: images/reglogo.jpg
+        * - .. image:: images/reglogo.png
               :height: 100pt
               :alt: DTG logo
               :target: `Rehabilitation Engineering Group`_
@@ -45,7 +45,7 @@ MBS Benchmarks in Opensim have been developed by the `Rehabilitation Engineering
 
     .. list-table::
 
-        * - .. image:: images/reglogo.jpg
+        * - .. image:: images/reglogo.png
               :height: 100pt
               :alt: DTG logo
           - .. image:: images/unipd.png

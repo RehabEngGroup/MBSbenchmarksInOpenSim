@@ -42,6 +42,7 @@ extensions = ['sphinx.ext.intersphinx',
               'sphinx.ext.todo',
               'sphinx.ext.mathjax',
               'sphinxcontrib.bibtex',
+              'sphinxcontrib.youtube',
               'sphinx.ext.ifconfig',
               'sphinx.ext.numfig']
 templates_path = ['@conf_path@/templates']
@@ -96,7 +97,7 @@ latex_elements = {}
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'MBS-BOSUserGuide.tex', u'MBS Benchmarks in OpenSim Reference Documentation ',
-   u'Luca Tagliapietra, Michele Vivian, Monica Reggiani, and Elena Ceseracciu', 'manual'),
+   u'L. Tagliapietra, M. Vivian, M. Reggiani, E. Ceseracciu', 'manual'),
 ]
 
 
