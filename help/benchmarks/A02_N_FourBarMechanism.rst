@@ -4,12 +4,12 @@ MBS Benchmark A02: N-Four-Bar Mechanism
 
 Benchmark Objective
 -------------------
-The **A02** MBS benchmark problem is a common example of a mechanism which undergoes singular configuration [GDLC06]_.
+The **A02** MBS benchmark problem is a common example of a mechanism which undergoes singular configuration.
 
 Benchmark Description
 ---------------------
 The N-four-bar mechanism is a common example of a mechanism which undergoes singular configuration.
-The system has N four-bar windows composed of 2N+1 links. It is an extension of the two four-bar mechanism proposed in [BA94]_.
+The system has N four-bar windows composed of 2N+1 links. It is an extension of the two four-bar mechanism proposed in :cite:`1994:bayo`.
 When the mechanism reaches the horizontal position, the number of the degrees of freedom instantaneously increase from 1 to N+1.
 Gravity acts on the negative y direction.
 
@@ -40,7 +40,7 @@ The starting position of the simulation is shown in the previous picture with an
 
 The accuracy of the simulation has been measured as the variation in the mechanical energy from the initial condition. Mechanical energy defined as the sum of potential and kinetic energy. Since no dissipation phenomena is included in problem definition, theoretical value for mechanical energy variation shoud be zero.
 
-Additional evaluation has been conducted comparing the simulated displacement of the point :math:`B_0`, with the reference solution provided by the problem authors [GDLC06]_.
+Additional evaluation has been conducted comparing the simulated displacement of the point :math:`B_0`, with the reference solution provided by the problem authors :cite:`2006:gonzales`.
 
 The simulation with OpenSim perfectly matches the reference values.
 
@@ -81,6 +81,9 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of N-four-bar mechanism simulated in OpenSimn available at: http://goo.gl/q4G2FZ
 
-References
-----------
-.. [BA94] E. Bayo and A. Avello, *Singularity-Free Augmented Lagrangian Algorithms for Constrained Multibody Dynamics* in Nonlinear Dyn., vol. 5, no. 2, 1994, pp. 209--231.
+.. only:: html
+
+  References
+  ----------
+  .. bibliography:: refs.bib
+     :cited:

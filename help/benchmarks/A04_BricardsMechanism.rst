@@ -4,8 +4,8 @@ MBS Benchmark A04: Bricard's Mechanism
 
 Benchmark Objective
 -------------------
-Bricard's mechanism (benchmark problem **A04**) [BRI97]_ is an example of over-constrained system.
-Grübler's formula [GRU84]_ results in no degrees of freedom, however, the particular orientation of the revolute pairs results in a system with one degree of freedom.
+Bricard's mechanism (benchmark problem **A04**) :cite:`1897:bricard` is an example of over-constrained system.
+Grübler's formula :cite:`1884:grubler` results in no degrees of freedom, however, the particular orientation of the revolute pairs results in a system with one degree of freedom.
 
 Benchmark Description
 ---------------------
@@ -47,7 +47,7 @@ Since no friction or dissipative elements are present in the mechanism energy sh
     Mechanical energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).
 
 
-Next figure shows instead :math:`P_3` point displacements estimated with the OpenSim simulation compared with the values provided as reference [GDLC05]_.
+Next figure shows instead :math:`P_3` point displacements estimated with the OpenSim simulation compared with the values provided as reference :cite:`2006:gonzales`.
 
 .. figure:: ../images/A04_kinematics.png
    :align: center
@@ -79,7 +79,9 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of Bricard's mechanism sumulated in OpenSim available at: http://goo.gl/8RF6nR
 
-References
-----------
-.. [BRI97] Bricard R. *Mémoire sur la théorie de l'octaédre articulé*, in Journal de Mathématiques pures et appliquées, Liouville 3, 1897, pp. 113–148.
-.. [GRU84] Gr{\"u}bler, M. *Allgemeine Eigenschaften der zwangl{\"a}ufigen ebenen kinematischen Ketten*, Ed. Simion, 1884.
+.. only:: html
+
+    References
+    ----------
+    .. bibliography:: refs.bib
+       :cited:

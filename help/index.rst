@@ -19,7 +19,6 @@ Benchmarks
    /benchmarks/A04_BricardsMechanism
    /benchmarks/A05_FlyballGovernor
 
-
 #################
 Acknowledgements
 #################
@@ -70,6 +69,11 @@ European Commission (`BioMot`_ project, grant number: 611695).
             :height: 100pt
             :align: center
             :alt: BioMot logo
+
+.. only:: latex
+
+    .. bibliography:: /benchmarks/refs.bib
+     :all:
 
 .. only:: html
 

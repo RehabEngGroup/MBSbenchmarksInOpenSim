@@ -4,11 +4,11 @@ MBS Benchmark A03: Andrew's Squeezer Mechanism
 
 Benchmark Objective
 -------------------
-The **A03** MSB benchmark problem has a very small time scale, thus making it difficult to simulate for solvers that cannot reach small time steps (below 1 ms)[GDLC06]_.
+The **A03** MSB benchmark problem has a very small time scale, thus making it difficult to simulate for solvers that cannot reach small time steps (below 1 ms) :cite:`2006:gonzales`.
 
 Benchmark Description
 ---------------------
-Andrew's squeezer mechanism [SCH90]_ is a planar system composed of seven bodies interconnected through revolution joints, and driven by a motor located in O.
+Andrew's squeezer mechanism :cite:`1997:schiehlen` is a planar system composed of seven bodies interconnected through revolution joints, and driven by a motor located in O.
 The next figure presents the sketch of the mechanism.
 
 .. figure:: ../images/3MBS_Andrew.png
@@ -125,7 +125,7 @@ Since no dissipation is present in the mechanism theoretical value for :math:`\D
 
    Total energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).
 
-A second evaluation has been conducted measuring F point displacements and comparing them with the reference solutions [GDLC06]_.
+A second evaluation has been conducted measuring F point displacements and comparing them with the reference solution.
 The simulation with OpenSim perfectly match the reference values as shown in the next figure.
 
 .. figure:: ../images/A03_kinematics.png
@@ -158,8 +158,9 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Videos of Andrew's squeezing mechanism simulated in OpenSim available at: http://goo.gl/9BBdZH
 
+.. only:: html
 
-References
-----------
-
-.. [SCH90]  M. Schiehlen, *Multibody Systems Handbook*. Springer-Verlag, Dordrecht (1990)
+    References
+    ----------
+    .. bibliography:: refs.bib
+        :cited:

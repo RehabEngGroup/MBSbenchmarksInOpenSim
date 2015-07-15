@@ -43,9 +43,9 @@ Results
 
 The dynamic simulation of the **A05** benchmark was executed for 10 s.
 The starting position of the system in shown in the previous figure and numerical values are reported in Tab.~\ref{TAB:SystemProperties}.
-:math:`s` values estimated with the OpenSim simulation are compared with the values provided as reference [GDLC06]_.
 
-Next figure shows the outputs of OpenSim-based simulation and the benchmark references [GDLC06]_.
+:math:`s` values estimated with the OpenSim simulation are compared with the values provided as reference :cite:`2006:gonzales`.
+
 
 .. figure:: ../images/A05_kinematics.png
    :align: center
@@ -75,7 +75,11 @@ Download
 
 * Stiff flyball governor on MBS Benchmark library available at: http://goo.gl/ylkXzN
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Video of Stiff flyball governor simulated in OpenSim available at: http://goo.gl/J3nOaY
+* Video of stiff flyball governor simulated in OpenSim available at: http://goo.gl/J3nOaY
 
-References
-----------
+.. only:: html
+
+    References
+    ----------
+    .. bibliography:: refs.bib
+      :cited:

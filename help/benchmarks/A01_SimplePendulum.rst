@@ -35,7 +35,7 @@ Results
 The dynamic simulation of the **A01** benchmark was executed for 10s.
 In the initial position, the system is horizontal with :math:`P_1` x-coordinate equals to -1.0 m and y-coordinate equals to 0.0 m.
 The first figure shows the variation of mechanical energy in the system, defined as sum of potential and kinetic energy, from the initial condition. Since no dissipation is present in the problem, variation should be zero.
-The second figure, instead, compares the outputs of the OpenSim-based simulation with the benchmark references available from [GDLC06]_.
+The second figure, instead, compares the outputs of the OpenSim-based simulation with the benchmark references available from :cite:`2006:gonzales`.
 
 .. figure:: ../images/A01_energy.png
    :align: center
@@ -57,7 +57,7 @@ Videos
 ------
 .. only:: html
 
-    .. youtube:: http://www.youtube.com/watch?v=FAihrQW7vQw
+    .. youtube:: https://www.youtube.com/watch?v=FAihrQW7vQw
 
     .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
 
@@ -75,7 +75,8 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of Simple Pendulum simulated in OpenSim available at: http://goo.gl/DIIWA7
 
+
 References
 ----------
-
-.. [GDLC06] M. Gonzàlez, D. Dopico, U. Lugrìs, J. Cuadrado, *A benchmarking system for MBS simulation software: Problem standardization and performance measurement* in Multibody System Dyn., vol.6, no.2,  2006, pp.~179--190.
+.. bibliography:: refs.bib
+  :cited:
