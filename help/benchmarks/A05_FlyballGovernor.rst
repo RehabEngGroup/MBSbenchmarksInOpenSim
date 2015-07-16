@@ -77,9 +77,3 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of stiff flyball governor simulated in OpenSim available at: http://goo.gl/J3nOaY
 
-.. only:: html
-
-    References
-    ----------
-    .. bibliography:: refs.bib
-      :cited:

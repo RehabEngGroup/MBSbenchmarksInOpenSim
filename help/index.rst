@@ -18,6 +18,7 @@ Benchmarks
    /benchmarks/A03_AndrewsMechanism
    /benchmarks/A04_BricardsMechanism
    /benchmarks/A05_FlyballGovernor
+   zreferences
 
 #################
 Acknowledgements

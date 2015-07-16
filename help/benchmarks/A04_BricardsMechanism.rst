@@ -79,9 +79,3 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of Bricard's mechanism sumulated in OpenSim available at: http://goo.gl/8RF6nR
 
-.. only:: html
-
-    References
-    ----------
-    .. bibliography:: refs.bib
-       :cited:

@@ -81,9 +81,3 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of N-four-bar mechanism simulated in OpenSimn available at: http://goo.gl/q4G2FZ
 
-.. only:: html
-
-  References
-  ----------
-  .. bibliography:: refs.bib
-     :cited:

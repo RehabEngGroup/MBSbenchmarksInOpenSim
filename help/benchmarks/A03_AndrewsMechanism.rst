@@ -158,9 +158,3 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Videos of Andrew's squeezing mechanism simulated in OpenSim available at: http://goo.gl/9BBdZH
 
-.. only:: html
-
-    References
-    ----------
-    .. bibliography:: refs.bib
-        :cited:

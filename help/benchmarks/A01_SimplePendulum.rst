@@ -75,8 +75,3 @@ Download
 * OpenSim implementation available at: http://goo.gl/R9tl3z
 * Video of Simple Pendulum simulated in OpenSim available at: http://goo.gl/DIIWA7
 
-
-References
-----------
-.. bibliography:: refs.bib
-  :cited:
