@@ -23,6 +23,7 @@
     using std::endl;
 
 #include "OpenSim/OpenSim.h"
+#include "OpenSim/Simulation/Model/SystemEnergyProbe.h"
 #include "simulationManager.h"
 #include "configurationInterpreter.h"
 
@@ -42,27 +43,41 @@ int main(int argc, char **argv) {
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
   }
-  
+
   const std::string dataDir = argv[1];
   cout << "Input data directory: " << dataDir << endl;
-  
+
   const std::string outputDir = dataDir+"/SimulationResults";
-  
-  const std::string integratorName = "RungeKuttaFeldberg";
+  const std::string integratorName = "RungeKuttaMerson";
+
   // Load the Opensim Model
   OpenSim::Model nFourBarMechanism((dataDir+"/40-FourBarMechanism.osim").c_str());
-  
-  // Add Force reporter and kinematics reporter to the model  
+
+  // Add System Energy Reporter
+  OpenSim::SystemEnergyProbe *energyProbe = new OpenSim::SystemEnergyProbe(true, true);
+  energyProbe->setName("ener");
+  energyProbe->setGain(1.0);
+  energyProbe->setOperation("value");
+  energyProbe->setComputeKineticEnergy(true);
+  energyProbe->setComputePotentialEnergy(true);
+  nFourBarMechanism.addProbe(energyProbe);
+  OpenSim::ProbeReporter *energyReporter = new OpenSim::ProbeReporter(&nFourBarMechanism);
+  energyReporter->setName(std::string("energyReporter"));
+  std::cout << energyReporter->getName() << std::endl;
+  nFourBarMechanism.addAnalysis(energyReporter);
+
+  // Add Force Reporter
   OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&nFourBarMechanism);
   forceReporter->setName(std::string("forceReporter"));
   nFourBarMechanism.addAnalysis(forceReporter);
-  
+
+  // Add Kinematics Reporter
   OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&nFourBarMechanism);
   pointKinematicsReporter -> setBodyPoint(std::string("Link_1"), SimTK::Vec3(0,0.5,0));
   pointKinematicsReporter->setName(std::string("pointKinematicsReporter"));
   pointKinematicsReporter ->setDescription("3d Kinematics of the point B0 (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
   nFourBarMechanism.addAnalysis(pointKinematicsReporter);
-  
+
   // Read the configuration Parameter File
   std::map<std::string, double> parametersMap;
   try{
@@ -74,11 +89,10 @@ int main(int argc, char **argv) {
     std::cerr << e.what() << std::endl;
     return -1;
   }
-  
+
   SimTK::State fakedInitialState;
-  
   simulationManager manager(fakedInitialState, nFourBarMechanism, parametersMap, integratorName, outputDir);
   manager.simulate();
-  
+
   cout << "Simulation results stored in: " << outputDir << endl;
 }

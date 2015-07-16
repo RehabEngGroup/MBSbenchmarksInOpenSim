@@ -23,6 +23,7 @@ using std::cout;
 using std::endl;
 
 #include "OpenSim/OpenSim.h"
+#include "OpenSim/Simulation/Model/SystemEnergyProbe.h"
 #include "simulationManager.h"
 #include "configurationInterpreter.h"
 
@@ -47,24 +48,36 @@ int main(int argc, char **argv) {
   cout << "Input data directory: " << dataDir << endl;
 
   const std::string outputDir = dataDir+"/SimulationResults";
-  
-  const std::string integratorName = "RungeKuttaFeldberg";
+  const std::string integratorName = "CPodes";
 
   // Load the Opensim Model
   OpenSim::Model flyballGovernor((dataDir+"/FlyballGovernor.osim").c_str());
-  
-  // Add Force reporter and kinematics reporter to the model  
+
+  // Add System Energy Reporter
+  OpenSim::SystemEnergyProbe *energyProbe = new OpenSim::SystemEnergyProbe(true, true);
+  energyProbe->setName("ener");
+  energyProbe->setGain(1.0);
+  energyProbe->setOperation("value");
+  energyProbe->setComputeKineticEnergy(true);
+  energyProbe->setComputePotentialEnergy(true);
+  flyballGovernor.addProbe(energyProbe);
+  OpenSim::ProbeReporter *energyReporter = new OpenSim::ProbeReporter(&flyballGovernor);
+  energyReporter->setName(std::string("energyReporter"));
+  std::cout << energyReporter->getName() << std::endl;
+  flyballGovernor.addAnalysis(energyReporter);
+
+  // Add Force Reporter
   OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&flyballGovernor);
   forceReporter->setName(std::string("forceReporter"));
   flyballGovernor.addAnalysis(forceReporter);
-  
-  
+
+  // Add Kinematics Reporter
   OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&flyballGovernor);
   pointKinematicsReporter -> setBodyPoint(std::string("base"), SimTK::Vec3(0,0,0));
   pointKinematicsReporter->setName(std::string("pointKinematicsReporter"));
   pointKinematicsReporter ->setDescription("3d Kinematics of the coordinate s (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
   flyballGovernor.addAnalysis(pointKinematicsReporter);
-  
+
   // Read the configuration Parameter File
   std::map<std::string, double> parametersMap;
   try{
@@ -76,10 +89,10 @@ int main(int argc, char **argv) {
     std::cerr << e.what() << std::endl;
     return -1;
   }
-  
+
   SimTK::State fakedInitialState;
   simulationManager manager(fakedInitialState, flyballGovernor, parametersMap, integratorName, outputDir);
   manager.simulate();
-  
+
   cout << "Simulation results stored in: " << outputDir << endl;
 }

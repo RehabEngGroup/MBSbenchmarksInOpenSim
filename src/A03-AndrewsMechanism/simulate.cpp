@@ -22,6 +22,7 @@
     using std::cout;
     using std::endl;
 #include "OpenSim/OpenSim.h"
+#include "OpenSim/Simulation/Model/SystemEnergyProbe.h"
 #include "simulationManager.h"
 #include "configurationInterpreter.h"
 #include "DcMotorPIDController.h"
@@ -43,41 +44,55 @@ int main(int argc, char **argv) {
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
   }
-  
+
   const std::string dataDir = argv[1];
   cout << "Input data directory: " << dataDir << endl;
 
   const std::string outputDir = dataDir+"/SimulationResults";
-  
+
   // Load the Opensim Model
   OpenSim::Model andrewsMechanism((dataDir+"/AndrewsMechanism.osim").c_str());
 
+  // Add motor and constant controller
   SimTK::Vec3 pointA(0,0,0);
   SimTK::Vec3 pointB(0,0,1);
-  
   SimTK::Vec3 axis = pointA - pointB;
   OpenSim::TorqueActuator *motor = new OpenSim::TorqueActuator(andrewsMechanism.updBodySet().get(std::string("ground")), andrewsMechanism.updBodySet().get(std::string("OF")),axis, true);
   motor->setName("motor");
   motor->set_optimal_force(0.033);
   andrewsMechanism.addForce(motor);
-  
+
   int indexMotor = andrewsMechanism.updActuators().getIndex("motor");
   DcMotorPIDController *constController = new DcMotorPIDController(andrewsMechanism, 0.0, 0.0, 0.0,indexMotor); //0.5
   constController->setName("Constant Controller");
   constController->setActuators(andrewsMechanism.updActuators());
   andrewsMechanism.addController(constController);
 
-  // Add Force reporter and kinematics reporter to the model  
+  // Add System Energy Reporter
+  OpenSim::SystemEnergyProbe *energyProbe = new OpenSim::SystemEnergyProbe(true, true);
+  energyProbe->setName("ener");
+  energyProbe->setGain(1.0);
+  energyProbe->setOperation("value");
+  energyProbe->setComputeKineticEnergy(true);
+  energyProbe->setComputePotentialEnergy(true);
+  andrewsMechanism.addProbe(energyProbe);
+  OpenSim::ProbeReporter *energyReporter = new OpenSim::ProbeReporter(&andrewsMechanism);
+  energyReporter->setName(std::string("energyReporter"));
+  std::cout << energyReporter->getName() << std::endl;
+  andrewsMechanism.addAnalysis(energyReporter);
+
+  // Add Force Reporter
   OpenSim::ForceReporter *forceReporter = new OpenSim::ForceReporter(&andrewsMechanism);
   forceReporter->setName(std::string("forceReporter"));
   andrewsMechanism.addAnalysis(forceReporter);
-  
+
+  // Add Kinematics Reporter
   OpenSim::PointKinematics *pointKinematicsReporter = new OpenSim::PointKinematics(&andrewsMechanism);
   pointKinematicsReporter -> setBodyPoint(std::string("OF"), SimTK::Vec3(0.0035,0,0));
   pointKinematicsReporter->setName(std::string("pointKinematicsReporter"));
   pointKinematicsReporter ->setDescription("3d Kinematics of the point F (state_0 = X Displacement, state_1 = Y Displacement, state_2 = Z Displacement)");
   andrewsMechanism.addAnalysis(pointKinematicsReporter);
-  
+
   // Read the configuration Parameter File
   std::map<std::string, double> parametersMap;
   try{
@@ -89,10 +104,10 @@ int main(int argc, char **argv) {
     std::cerr << e.what() << std::endl;
     return -1;
   }
-  
+
   SimTK::State fakedInitialState;
   simulationManager manager(fakedInitialState, andrewsMechanism, parametersMap, "RungeKuttaMerson", outputDir);
   manager.simulate();
-  
+
   cout << "Simulation results stored in: " << outputDir << endl;
 }

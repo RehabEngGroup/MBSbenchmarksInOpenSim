@@ -21,15 +21,15 @@
 #include <OpenSim/OpenSim.h>
 #include <map>
 #include <iostream>
-  using std::cout;
-  using std::endl;
+using std::cout;
+using std::endl;
 
 #include "simulationManager.h"
 
 //***************************************************
 //    Public Constructors
 //***************************************************
-  
+
 simulationManager::simulationManager(SimTK::State& fakedInitialState, OpenSim::Model& model, const std::map <std::string, double> parametersMap, const std::string integratorName, const std::string outDir)
 :osimModel_(model), initialState_(fakedInitialState), parametersMap_(parametersMap), integratorName_(integratorName), outDir_(outDir){
   setParameters();
@@ -46,38 +46,79 @@ double simulationManager::getParameter(std::string key) const {
 }
 
 void simulationManager::simulate() {
-  std::clock_t startTime = clock();
-  SimTK::Integrator* integrator;
   // Create the integrator
-  if (!integratorName_.compare(std::string("RungeKuttaMerson")))
+  SimTK::Integrator* integrator;
+  if (!integratorName_.compare(std::string("CPodes"))){
+    integrator = new SimTK::CPodesIntegrator(osimModel_.getMultibodySystem(), SimTK::CPodes::BDF);
+    std::cout << "Using CPodes integrator" << std::endl;
+  }
+  else if (!integratorName_.compare(std::string("RungeKuttaMerson"))){
     integrator = new SimTK::RungeKuttaMersonIntegrator(osimModel_.getMultibodySystem());
-  else //if(!integratorName_.compare(std::string("RungeKuttaFeldberg")))
-      integrator =new SimTK::RungeKuttaFeldbergIntegrator(osimModel_.getMultibodySystem());
-  
-  integrator->setMinimumStepSize(minStepSize_);
+    std::cout << "Using RungeKuttaMerson integrator" << std::endl;
+  }
+  else {
+    integrator =new SimTK::RungeKuttaFeldbergIntegrator(osimModel_.getMultibodySystem());
+    std::cout << "Using RungeKuttaFeldberg integrator" << std::endl;
+  }
+
+  //integrator->setMinimumStepSize(minStepSize_);
   integrator->setMaximumStepSize(maxStepSize_);
   integrator->setAccuracy(accuracy_);
   integrator->setConstraintTolerance(tolerance_);
   integrator->setProjectEveryStep(true);
+  integrator->setInternalStepLimit(internalStepLimit_);
+
+  // Set number of decimal digits for output files
+  OpenSim::IO::SetPrecision(15);
+
+#ifndef MBS_BOS_USE_SIMULATION_MANAGER
+  cout << "Working with Simbody TimeStepper & Co." << endl;
   
-  // Create the manager for the integrator
-  OpenSim::Manager manager(osimModel_, *integrator);
-  
-  // Integrate from initial time to final time
-  manager.setInitialTime(initialTime_);
-  manager.setFinalTime(finalTime_);
-  
-  cout << "\n\nIntegrating from " << initialTime_ << " to " << finalTime_ << endl;
-  
-  manager.integrate(initialState_);
-  
+  SimTK::TimeStepper stepper(osimModel_.getMultibodySystem(), *integrator);
+  stepper.initialize(initialState_);
+
+  std::clock_t startTime = clock();
+
+  std::vector<SimTK::State> states;
+  std::vector<double> times;
+  int step = 0;
+  for (double time = initialTime_; stepper.getTime() < finalTime_ ; time = time + reportingStep_) {
+    times.push_back(time);
+    stepper.stepTo(time);
+    osimModel_.updAnalysisSet().step(stepper.getState(), step);
+    states.push_back(stepper.getState());
+    step++;
+  }
+
   cout << "Integrate routine time = " << 1.e3*(clock()-startTime)/CLOCKS_PER_SEC << " ms" << endl;
   cout << "The maximum allowed error was " << integrator->getAccuracyInUse();
   cout << " measured with " << integrator->getNumStepsTaken() << " output steps and";
   cout << " a treshold value of " << integrator->getAccuracyInUse() << endl;
 
-  saveSimulationResults(manager);
+  saveSimulationResults(states, times);
+
+#else
+    // Create the manager for the integrator
+    OpenSim::Manager manager(osimModel_, *integrator);
+
+    // Integrate from initial time to final time
+    manager.setInitialTime(initialTime_);
+    manager.setFinalTime(finalTime_);
+
+    cout << "\n\nIntegrating from " << initialTime_ << " to " << finalTime_ << endl;
+
+    std::clock_t startTime = clock();
+    manager.integrate(initialState_);
+
+    cout << "Integrate routine time = " << 1.e3*(clock()-startTime)/CLOCKS_PER_SEC << " ms" << endl;
+    cout << "The maximum allowed error was " << integrator->getAccuracyInUse();
+    cout << " measured with " << integrator->getNumStepsTaken() << " output steps and";
+    cout << " a treshold value of " << integrator->getAccuracyInUse() << endl;
+
+    saveSimulationResults(manager);
+#endif
 }
+
 
 //***************************************************
 //    Private Functions
@@ -99,33 +140,74 @@ void simulationManager::initializeState() {
   osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Position);
   osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Velocity);
   osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Acceleration);
+  osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Report);
 }
 
 void simulationManager::saveSimulationResults(const OpenSim::Manager& manager){
   // Save the model to a file: now we save the modified model 
-  cout<<"Saving files..."<<endl;
-  //osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Position);
+  std::cout<<"Saving files..."<<std::endl;
+  osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Report);
 
   OpenSim::Storage statesRadians(manager.getStateStorage());
-	OpenSim::Storage::printResult(&statesRadians, "states", outDir_, reportingStep_, ".sto");
-	//statesRadians.print(outDir_ + "/StatesResults.sto");
+  OpenSim::Storage::printResult(&statesRadians, "states", outDir_, reportingStep_, ".sto");
 
 	OpenSim::Storage statesDegrees(manager.getStateStorage());
 	osimModel_.updSimbodyEngine().convertRadiansToDegrees(statesDegrees);
   statesDegrees.setWriteSIMMHeader(true);
 	OpenSim::Storage::printResult(&statesDegrees, "statesDeg", outDir_, reportingStep_, ".sto");
-//  statesDegrees.print(outDir_ + "/StatesResults_Degree.mot");
 
   // Save the Point Kinematic Position
 	osimModel_.updAnalysisSet().get("pointKinematicsReporter").printResults("pointKinematics", outDir_, reportingStep_);
- // OpenSim::Analysis &tmp = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("pointKinematicsReporter")));
-	//tmp.p
- // OpenSim::PointKinematics* pointKinematicReporter=dynamic_cast<OpenSim::PointKinematics*>(&tmp);
- // pointKinematicReporter->getPositionStorage()->print(outDir_+"/pointKinematicsPositionResults.mot");
+
+  // Save the Point Kinematic Position
+  osimModel_.updAnalysisSet().get("energyReporter").printResults("energy", outDir_, reportingStep_);
 
   // Save the forces
 	osimModel_.updAnalysisSet().get("forceReporter").printResults("forces", outDir_, reportingStep_);
-  //OpenSim::Analysis &tmp2 = const_cast<OpenSim::Analysis&>(osimModel_.getAnalysisSet().get(std::string("forceReporter")));
-  //OpenSim::ForceReporter* forceReporter = dynamic_cast<OpenSim::ForceReporter*>(&tmp2);
-  //forceReporter->getForceStorage().print(outDir_ + "/forcesResults.mot");
+}
+
+void simulationManager::saveSimulationResults(const std::vector<SimTK::State> states,const std::vector<double> times ){
+  OpenSim::StateVector stateVector;
+  OpenSim::Storage stateStorage;
+
+  //  ***  Uncomment to get in-depth logging of system energy  -  1 of 3
+  //  OpenSim::Storage energyStorage;
+  //  OpenSim::Array<std::string> energyLabels;
+  //  energyLabels.append("Time");
+  //  energyLabels.append("KinEnergy");
+  //  energyLabels.append("PotEnergy");
+  //  energyLabels.append("TotalEnergy");
+  //  energyStorage.setColumnLabels(energyLabels);
+
+  for (int i = 0; i<times.size(); i++){
+    OpenSim::Array<double> stateValues;
+    osimModel_.getMultibodySystem().realize(states.at(i), SimTK::Stage::Report);
+    osimModel_.getStateValues(states.at(i), stateValues);
+    stateVector.setStates(times.at(i), stateValues.getSize(), &stateValues[0]);
+    stateStorage.append(stateVector);
+
+    //  ***  Uncomment to get in-depth logging of system energy  -   2 of 3
+    //  SimTK::Real kinEnergy = osimModel_.getMultibodySystem().calcKineticEnergy(states.at(i));
+    //  SimTK::Real potEnergy = osimModel_.getMultibodySystem().calcPotentialEnergy(states.at(i));
+    //  OpenSim::Array<double> tmpEnergy(3);
+    //  tmpEnergy.set(0, kinEnergy);
+    //  tmpEnergy.set(1, potEnergy);
+    //  tmpEnergy.set(2, kinEnergy+potEnergy);
+    //  energyStorage.append(times.at(i), tmpEnergy);
+  }
+
+  //  ***  Uncomment to get in-depth logging of system energy   -   3 of 3
+  //  energyStorage.print(outDir_+"/DetailedSystemEnergy.sto");
+
+  // Save system States
+  stateStorage.print(outDir_+"/StateStorage.sto");
+
+  // Save Point Kinematics
+  osimModel_.updAnalysisSet().get("pointKinematicsReporter").printResults("pointKinematics", outDir_, reportingStep_);
+
+  // Save System Energy
+  osimModel_.updAnalysisSet().get("energyReporter").printResults("energy", outDir_, reportingStep_);
+
+  // Save Forces
+  osimModel_.updAnalysisSet().get("forceReporter").printResults("forces", outDir_, reportingStep_);
 }

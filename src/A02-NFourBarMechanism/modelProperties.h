@@ -21,7 +21,7 @@
 #ifndef modelProperties_h
 #define modelProperties_h
 
-const int nWindow = 40;
+const int nWindow = 2;
 
 const std::string modelName = "40-FourBarMechanism";
 const std::string rodGeometry = "cylinder.vtp";

@@ -32,7 +32,8 @@ public:
 private:
   void setParameters();
   void initializeState();
-  void saveSimulationResults(const OpenSim::Manager& manager);  
+  void saveSimulationResults(const OpenSim::Manager& manager);
+  void saveSimulationResults(const std::vector<SimTK::State> states, const std::vector<double> times);
 
   double initialTime_;
   double finalTime_;

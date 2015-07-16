@@ -8,6 +8,12 @@ set(SIMULATION_MANAGER_HEADER_FILES simulationManager.h configurationInterpreter
 source_group("Headers" FILES ${SIMULATION_MANAGER_HEADER_FILES})
 source_group("Sources" FILES ${SIMULATION_MANAGER_SOURCE_FILES})
 
+option(MBS-BOS_USE_SIMULATION_MANAGER "Use SimulationManager class instead of Simbody TimeStepper & C." ON)
+
+if(MBS-BOS_USE_SIMULATION_MANAGER)
+  add_definitions(-DMBS_BOS_USE_SIMULATION_MANAGER)
+endif()
+
 add_library(simulationManager ${SIMULATION_MANAGER_SOURCE_FILES} ${SIMULATION_MANAGER_HEADER_FILES})
 target_link_libraries(simulationManager ${OPENSIM_LIBRARIES})
 

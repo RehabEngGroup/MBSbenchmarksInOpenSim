@@ -28,6 +28,7 @@ const std::string jointGeometry = "cylinder.vtp";
 const double barMass = 1;
 const double barLength = 1;
 const double barRadius = 0.0;
+const double crossSectionLength = 0.1;
 const SimTK::Vec3 barMassCenter(0);
 
 const std::string linkNamePrefix = "Link_";   
