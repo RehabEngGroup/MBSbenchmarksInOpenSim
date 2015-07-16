@@ -71,9 +71,8 @@ Videos
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available `here`_.
+  Video of the problem simulated in OpenSim is available at http://goo.gl/q4G2FZ
 
-.. _here: http://goo.gl/q4G2FZ
 Download
 --------
 

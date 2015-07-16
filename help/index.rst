@@ -56,25 +56,12 @@ Luca Tagliapietra, Michele Vivian, Monica Reggiani, and Elena Ceseracciu acknowl
 programme within the Seventh Framework Programme for Research of the
 European Commission (`BioMot`_ project, grant number: 611695).
 
-.. only:: html
 
-    .. image:: images/biomot.png
-            :height: 100pt
-            :align: center
-            :alt: BioMot logo
-            :target: `Biomot`_
-
-.. only:: latex
-
-    .. image:: images/biomot.png
-            :height: 100pt
-            :align: center
-            :alt: BioMot logo
-
-.. only:: latex
-
-    .. bibliography:: /benchmarks/refs.bib
-     :all:
+.. image:: images/biomot.png
+   :height: 100pt
+   :align: center
+   :alt: BioMot logo
+   :target: `BioMot`_
 
 .. only:: html
 

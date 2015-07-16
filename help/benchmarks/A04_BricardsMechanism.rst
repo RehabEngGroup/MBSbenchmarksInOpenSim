@@ -44,7 +44,7 @@ Since no friction or dissipative elements are present in the mechanism energy sh
    :alt: A04 energy.
    :figclass: align-center
 
-    Mechanical energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).
+   Mechanical energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).
 
 
 Next figure shows instead :math:`P_3` point displacements estimated with the OpenSim simulation compared with the values provided as reference :cite:`2006:gonzales`.
@@ -68,9 +68,7 @@ Videos
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available `here`_.
-
-.. _here: http://goo.gl/8RF6nR
+  Video of the problem simulated in OpenSim is available at http://goo.gl/8RF6nR
 
 Download
 --------
