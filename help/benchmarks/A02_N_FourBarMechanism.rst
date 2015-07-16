@@ -23,14 +23,14 @@ Gravity acts on the negative y direction.
 
 The following table reports the initial configuration of the system.
 
-============================ ===========
-**System Properties and Configuration**
-----------------------------------------
- N                            2
- Link mass                    1.0 Kg
- Link length                  1.0 m
- :math:`\dot{B_{0}x}(0)`      1.0 m/s
-============================ ===========
+.. table:: System Properties and Configuration
+
+    ============================ ===========
+     N                            2
+     Link mass                    1.0 Kg
+     Link length                  1.0 m
+     :math:`\dot{B_{0}x}(0)`      1.0 m/s
+    ============================ ===========
 
 
 Results
