@@ -57,13 +57,11 @@ Videos
 ------
 .. only:: html
 
-    .. youtube:: https://www.youtube.com/watch?v=FAihrQW7vQw
-
-    .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
+    .. youtube:: https://www.youtube.com/watch?v=TZZkVR39IH8
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available at http://goo.gl/DIIWA7
+  Video of the problem simulated in OpenSim is available at https://youtu.be/TZZkVR39IH8
 
 
 Download
@@ -71,5 +69,4 @@ Download
 
 * Simple Pendulum on MBS Benchmark library available at: http://goo.gl/eiygbC
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Video of Simple Pendulum simulated in OpenSim available at: http://goo.gl/DIIWA7
-
+* Video of Simple Pendulum simulated in OpenSim available at: https://youtu.be/TZZkVR39IH8

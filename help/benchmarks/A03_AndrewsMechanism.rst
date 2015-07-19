@@ -137,18 +137,15 @@ Videos
 
 .. only:: html
 
-    .. youtube:: http://www.youtube.com/watch?v=FAihrQW7vQw
-
-    .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
+    .. youtube:: http://www.youtube.com/watch?v=XOgsQz5iabs
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available at http://goo.gl/9BBdZH
+  Video of the problem simulated in OpenSim is available at https://youtu.be/XOgsQz5iabs
 
 Download
 --------
 
 * Andrew's squeezing mechanism on MBS Benchmark library available at: http://goo.gl/cU4fPg
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Videos of Andrew's squeezing mechanism simulated in OpenSim available at: http://goo.gl/9BBdZH
-
+* Videos of Andrew's squeezing mechanism simulated in OpenSim available at: https://youtu.be/XOgsQz5iabs

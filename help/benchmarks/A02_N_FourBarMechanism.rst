@@ -65,18 +65,15 @@ Videos
 ------
 .. only:: html
 
-    .. youtube:: http://www.youtube.com/watch?v=FAihrQW7vQw
-
-    .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
+    .. youtube:: https://www.youtube.com/watch?v=eSesPhGIhco
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available at http://goo.gl/q4G2FZ
+  Video of the problem simulated in OpenSim is available at https://youtu.be/eSesPhGIhco
 
 Download
 --------
 
 * N-four-bar mechanism on MBS Benchmark library available at: http://goo.gl/c50tLg
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Video of N-four-bar mechanism simulated in OpenSimn available at: http://goo.gl/q4G2FZ
-
+* Video of N-four-bar mechanism simulated in OpenSimn available at: https://youtu.be/eSesPhGIhco

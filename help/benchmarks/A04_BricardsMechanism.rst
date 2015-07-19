@@ -63,18 +63,15 @@ Videos
 
 .. only:: html
 
-    .. youtube:: http://www.youtube.com/watch?v=FAihrQW7vQw
-
-    .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
+    .. youtube:: http://www.youtube.com/watch?v=vBpZ6P5VigA
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available at http://goo.gl/8RF6nR
+  Video of the problem simulated in OpenSim is available at https://youtu.be/vBpZ6P5VigA
 
 Download
 --------
 
 * Bricard's mechanism on MBS Benchmark library available at: http://goo.gl/9XLSME
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Video of Bricard's mechanism sumulated in OpenSim available at: http://goo.gl/8RF6nR
-
+* Video of Bricard's mechanism sumulated in OpenSim available at: https://youtu.be/vBpZ6P5VigA

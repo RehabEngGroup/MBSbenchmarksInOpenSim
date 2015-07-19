@@ -62,18 +62,15 @@ Videos
 
 .. only:: html
 
-    .. youtube:: http://www.youtube.com/watch?v=FAihrQW7vQw
-
-    .. youtube:: http://www.youtube.com/watch?v=7r_BKcd7zTI
+    .. youtube:: http://www.youtube.com/watch?v=pNLlsh6tIQU
 
 .. only:: latex
 
-  Video of the problem simulated in OpenSim is available at http://goo.gl/J3nOaY
+  Video of the problem simulated in OpenSim is available at https://youtu.be/pNLlsh6tIQU
 
 Download
 --------
 
 * Stiff flyball governor on MBS Benchmark library available at: http://goo.gl/ylkXzN
 * OpenSim implementation available at: http://goo.gl/R9tl3z
-* Video of stiff flyball governor simulated in OpenSim available at: http://goo.gl/J3nOaY
-
+* Video of stiff flyball governor simulated in OpenSim available at: https://youtu.be/pNLlsh6tIQU
