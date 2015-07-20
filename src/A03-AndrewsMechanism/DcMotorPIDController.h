@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -34,9 +34,9 @@ OpenSim_DECLARE_CONCRETE_OBJECT(DcMotorPIDController, Controller);
 
 //double integrator = 0.0;
 public:
-  DcMotorPIDController( Model& aModel, double aKp, double aKd, double aKi, int id) : 
+  DcMotorPIDController( Model& aModel, double aKp, double aKd, double aKi, int id) :
 	  Controller(), kp_(aKp), kd_(aKd), ki_(aKi), id_(id) {
-    integral=0.0; 
+    integral=0.0;
     speedReference=0.0;
     firstRound=true;		}
     /**
@@ -46,7 +46,7 @@ public:
     * @param index Index of the current actuator whose control is being calculated
     * @return Control value to be assigned to the current actuator at the current time
     */
-  virtual void computeControls( const SimTK::State& s, SimTK::Vector &controls ) const {	
+  virtual void computeControls( const SimTK::State& s, SimTK::Vector &controls ) const {
     controls[id_] = 1.0;
   }
 
@@ -61,4 +61,3 @@ private:
 
 	int id_;
 };
-

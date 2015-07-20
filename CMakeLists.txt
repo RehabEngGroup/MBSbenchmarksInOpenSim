@@ -1,6 +1,4 @@
-###########################################
-## For building with the rest of OpenSim ##
-###########################################
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 cmake_minimum_required(VERSION 2.6)
 
@@ -18,6 +16,3 @@ add_subdirectory(src)
 
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
-
-
-

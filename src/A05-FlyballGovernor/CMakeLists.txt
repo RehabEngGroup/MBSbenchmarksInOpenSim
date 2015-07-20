@@ -1,4 +1,4 @@
-##
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 option(BUILD_A05_FLYBALL_GOVERNOR "Build A05 flyball governor example" ON)
 if(BUILD_A05_FLYBALL_GOVERNOR)
@@ -30,4 +30,3 @@ if(BUILD_A05_FLYBALL_GOVERNOR)
     target_link_libraries(FlyballGovernorSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
-

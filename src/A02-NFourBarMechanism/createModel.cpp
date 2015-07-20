@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -45,20 +45,20 @@ void createBar(OpenSim::Model &aModel, std::string bodyName, std::string jointNa
   if (isHorizontal)
     barInertia = barMass*SimTK::Inertia::cylinderAlongX(0, barLength/2);
   else
-    barInertia = barMass*SimTK::Inertia::cylinderAlongY(0, barLength/2); 
+    barInertia = barMass*SimTK::Inertia::cylinderAlongY(0, barLength/2);
   OpenSim::Body *aBody = new OpenSim::Body(bodyName, barMass, barMassCenter, barInertia);
-  
+
   aBody->addDisplayGeometry("cylinder.vtp");
-  OpenSim::VisibleObject* vis = aBody->updDisplayer(); 
+  OpenSim::VisibleObject* vis = aBody->updDisplayer();
   if (isHorizontal){
     SimTK::Rotation rot(SimTK::Pi/2, SimTK::UnitVec3(0,0,1));
     SimTK::Transform trans = SimTK::Transform(rot);
     vis -> updTransform() =  trans;
   }
   vis -> setScaleFactors(SimTK::Vec3(0.05, 1, 0.05));
-  
+
   SimTK::Vec3 orientationInParent(0), orientationInBody(0);
-  OpenSim::PinJoint *aJoint = new OpenSim::PinJoint(jointName, parentBody, locationInParent, orientationInParent, *aBody, locationInBody, orientationInBody); 
+  OpenSim::PinJoint *aJoint = new OpenSim::PinJoint(jointName, parentBody, locationInParent, orientationInParent, *aBody, locationInBody, orientationInBody);
   OpenSim::CoordinateSet& aCoordinateSet = aJoint -> upd_CoordinateSet();
   aCoordinateSet[0].setName(jointName);
   aCoordinateSet[0].setDefaultValue(0);
@@ -77,9 +77,9 @@ int main(int argc, char **argv) {
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
   cout << " Problem A02: N Four-Bar Mechanism Model Creator" << endl;
-  cout << " Copyright (C) 2013, 2014  Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
+  cout << " Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
-  
+
   if (argc != 2){
     cout << " ******************************************************************************" << endl;
     cout << " Multi-Body System Benchmark in OpenSim: Creator for Model A02" << endl;
@@ -88,31 +88,31 @@ int main(int argc, char **argv) {
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
   }
-  
+
   const std::string dataDir = argv[1];
   cout << "Data directory: " + dataDir << endl;
-  
+
   OpenSim::Model nFourBarMechanism;
   nFourBarMechanism.setName(modelName);
   nFourBarMechanism.setAuthors("L.Tagliapietra, M. Vivian, M.Reggiani");
-  
+
   // Get a reference to the model's ground body
-  OpenSim::Body& ground = nFourBarMechanism.getGroundBody(); 
+  OpenSim::Body& ground = nFourBarMechanism.getGroundBody();
   nFourBarMechanism.setGravity(gravityVector);
 
   createBar(nFourBarMechanism,linkNamePrefix + patch::to_string(1), "A0",barMass, barLength, ground, SimTK::Vec3(0), SimTK::Vec3(0,-barLength/2,0), defaultSpeed, false);
-  
+
     // Create all the other bars and set the point costraints (joints that close the loop)
   for (int i = 0; i<nWindow*2; i+=2) {
     createBar(nFourBarMechanism, linkNamePrefix+patch::to_string(i+2),fakeJointNamePrefix+patch::to_string(i/2), barMass, barLength,
-      nFourBarMechanism.updBodySet().get(linkNamePrefix+patch::to_string(i+1)),SimTK::Vec3(0,barLength/2,0), SimTK::Vec3(-barLength/2, 0,0), -defaultSpeed, true);  
+      nFourBarMechanism.updBodySet().get(linkNamePrefix+patch::to_string(i+1)),SimTK::Vec3(0,barLength/2,0), SimTK::Vec3(-barLength/2, 0,0), -defaultSpeed, true);
     createBar(nFourBarMechanism, (linkNamePrefix+patch::to_string(i+3)), realJointNamePrefix+patch::to_string(i/2+1), barMass, barLength,
-      nFourBarMechanism.updBodySet().get(linkNamePrefix+patch::to_string(i+2)), SimTK::Vec3(barLength/2,0,0), SimTK::Vec3(0,barLength/2,0), defaultSpeed, false);    
+      nFourBarMechanism.updBodySet().get(linkNamePrefix+patch::to_string(i+2)), SimTK::Vec3(barLength/2,0,0), SimTK::Vec3(0,barLength/2,0), defaultSpeed, false);
     createPointCostraint(nFourBarMechanism, "ground", SimTK::Vec3(i/2+1,0,0), linkNamePrefix+patch::to_string(i+3), SimTK::Vec3(0,-barLength/2,0));
   };
-  
+
   // Save to file the model
   nFourBarMechanism.print((dataDir+"/"+modelName+std::string(".osim")).c_str());
-  
+
   cout << "Model stored in: " << dataDir << "/" << modelName << ".osim" << endl;
 }

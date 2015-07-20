@@ -1,3 +1,5 @@
+# Authors: Monica Reggiani, Claudio Pizzolato, and Elena Ceseracciu
+
 # - Try to find OpenSim and SimTK
 # Once done this will define
 #  OPENSIM_FOUND - System has OpenSim
@@ -19,7 +21,7 @@ set(OPENSIM_POSSIBLE_DIRECTORIES
 	if(NOT OPENSIM_HOME)
 	set (OPENSIM_HOME $ENV{OPENSIM_HOME})
 	endif()
-	
+
 	message("opensimHome: ${OPENSIM_HOME}")
 
 find_path(OPENSIM_INCLUDE_DIRS OpenSim/OpenSim.h
@@ -224,5 +226,5 @@ include(FindPackageHandleStandardArgs)
 # if all listed variables are TRUE
 # DEFAULT_MSG is predefined... change only if you need a custom msg
 find_package_handle_standard_args(OpenSim DEFAULT_MSG
-                                  #OPENSIM_LIBRARIES 
+                                  #OPENSIM_LIBRARIES
 								  OPENSIM_INCLUDE_DIRS SIMTK_INCLUDE_DIRS)

@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ const std::string triangleGeometry = "triangle.vtp";
   const double AGmass = 0.07050;
   const double HEmass = 0.00706;
   const double AHmass = 0.05498;
-  
+
   // Inertia moments of each body about its center of mass
   const double OFinertia = 2.194e-6;
   const double EFinertia = 4.410e-7;
@@ -42,7 +42,7 @@ const std::string triangleGeometry = "triangle.vtp";
   const double AGinertia = 1.169e-5;
   const double HEinertia = 5.667e-7;
   const double AHinertia = 1.912e-5;
-  
+
   // Lenght of each body
   const double OFlength = 0.007;
   const double EFlength = 0.028;
@@ -50,8 +50,8 @@ const std::string triangleGeometry = "triangle.vtp";
   const double GElength = 0.02;
   const double AGlength = 0.04;
   const double HElength = 0.02;
-  const double AHlength = 0.04;  
-  
+  const double AHlength = 0.04;
+
   const double OAngleAtZero = - 0.0620;
   const double FAngleAtZero = 0.0;
   const double E1AngleAtZero = -(SimTK::Pi - 2.3429420);
@@ -59,16 +59,16 @@ const std::string triangleGeometry = "triangle.vtp";
   const double E2AngleAtZero = 1.069936;
   const double HAngleAtZero = -(SimTK::Pi - 1.7933603);
   const double E3AngleAtZero = -(SimTK::Pi - 2.0879963);
-  
+
   // Mass center of each body
   const SimTK::Vec3 OFMassCenter(0.00092 - OFlength/2, 0, 0);
   const SimTK::Vec3 EFMassCenter(0.0165 - EFlength/2, 0, 0);
-  const SimTK::Vec3 BDEMassCenter(0.01874 - BElength/2, 0.01043, 0);   
-  const SimTK::Vec3 GEMassCenter(0.00579 - GElength/2, 0, 0); 
-  const SimTK::Vec3 AGMassCenter(0.02308 - AGlength/2, 0.00916, 0); 
-  const SimTK::Vec3 HEMassCenter(0.00579 - HElength/2, 0, 0); 
-  const SimTK::Vec3 AHMassCenter(0.01228 - AHlength/2, -0.00449, 0);  
-  
+  const SimTK::Vec3 BDEMassCenter(0.01874 - BElength/2, 0.01043, 0);
+  const SimTK::Vec3 GEMassCenter(0.00579 - GElength/2, 0, 0);
+  const SimTK::Vec3 AGMassCenter(0.02308 - AGlength/2, 0.00916, 0);
+  const SimTK::Vec3 HEMassCenter(0.00579 - HElength/2, 0, 0);
+  const SimTK::Vec3 AHMassCenter(0.01228 - AHlength/2, -0.00449, 0);
+
 //Gravity vector
 const SimTK::Vec3 gravityVector(0, 0, 0);
 

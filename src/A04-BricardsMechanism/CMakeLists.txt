@@ -1,4 +1,4 @@
-##
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 option(BUILD_A04_BRICARD_MECHANISM "Build A04 bricard mechanism example" ON)
 if(BUILD_A04_BRICARD_MECHANISM)
@@ -30,4 +30,3 @@ if(BUILD_A04_BRICARD_MECHANISM)
     target_link_libraries(BricardMechanismSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
-

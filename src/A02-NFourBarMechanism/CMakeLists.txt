@@ -1,4 +1,4 @@
-##
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 option(BUILD_A02_N_FOUR_BAR_MECHANISM "Build A02 nfour bar mechanism example" ON)
 if(BUILD_A02_N_FOUR_BAR_MECHANISM)
@@ -30,4 +30,3 @@ if(BUILD_A02_N_FOUR_BAR_MECHANISM)
     target_link_libraries(NFourBarMechanismSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
-

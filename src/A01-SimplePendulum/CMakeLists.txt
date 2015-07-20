@@ -1,4 +1,4 @@
-##
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 option(BUILD_A01_SIMPLE_PENDULUM "Build A01 simple pendlum example" ON)
 if(BUILD_A01_SIMPLE_PENDULUM)
@@ -30,4 +30,3 @@ if(BUILD_A01_SIMPLE_PENDULUM)
     target_link_libraries(SimplePendulumSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
-

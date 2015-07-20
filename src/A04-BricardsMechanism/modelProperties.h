@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ const double barRadius = 0.0;
 const double crossSectionLength = 0.1;
 const SimTK::Vec3 barMassCenter(0);
 
-const std::string linkNamePrefix = "Link_";   
+const std::string linkNamePrefix = "Link_";
 const std::string jointNamePrefix = "Pin_";
 
 //Gravity vector

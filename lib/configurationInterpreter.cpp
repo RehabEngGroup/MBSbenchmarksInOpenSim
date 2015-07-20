@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
 
 namespace patch{
   double to_double(const std::string numString){
-    double val = 0;    
+    double val = 0;
     std::stringstream stm(numString);
     stm >> val;
     return val;
@@ -54,7 +54,7 @@ configurationInterpreter::configurationInterpreter(const char* filename, const c
           configItems_[key] = patch::to_double(value);
         else
           throw runtime_error("Error within configuration file.");
-      }  
+      }
       else
         throw runtime_error("Error within configuration file.");
     }

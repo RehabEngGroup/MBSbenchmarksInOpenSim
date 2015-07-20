@@ -1,4 +1,4 @@
-
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 include_directories(${OPENSIM_INCLUDE_DIRS} ${SIMTK_INCLUDE_DIRS})
 
@@ -18,5 +18,3 @@ add_library(simulationManager ${SIMULATION_MANAGER_SOURCE_FILES} ${SIMULATION_MA
 target_link_libraries(simulationManager ${OPENSIM_LIBRARIES})
 
 set(SIMULATION_MANAGER_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR} ${OPENSIM_INCLUDE_DIRS} ${SIMTK_INCLUDE_DIRS} CACHE STRING "Simulation manager include directories")
-
-

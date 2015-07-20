@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
   cout << " Problem A01: Simple Pendulum Mechanism Simulator" << endl;
-  cout << " Copyright (C) 2013, 2014 Luca Tagliapietra, Michele Vivian, Monica Reggiani" << endl;
+  cout << " Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
 
   if (argc != 2){

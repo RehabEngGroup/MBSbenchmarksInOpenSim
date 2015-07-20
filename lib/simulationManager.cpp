@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -73,7 +73,7 @@ void simulationManager::simulate() {
 
 #ifndef MBS_BOS_USE_SIMULATION_MANAGER
   cout << "Working with Simbody TimeStepper & Co." << endl;
-  
+
   SimTK::TimeStepper stepper(osimModel_.getMultibodySystem(), *integrator);
   stepper.initialize(initialState_);
 
@@ -144,7 +144,7 @@ void simulationManager::initializeState() {
 }
 
 void simulationManager::saveSimulationResults(const OpenSim::Manager& manager){
-  // Save the model to a file: now we save the modified model 
+  // Save the model to a file: now we save the modified model
   std::cout<<"Saving files..."<<std::endl;
   osimModel_.getMultibodySystem().realize(initialState_, SimTK::Stage::Report);
 

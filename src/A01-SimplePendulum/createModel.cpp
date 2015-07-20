@@ -1,6 +1,6 @@
 // This is part of
 // Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
-// Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani
+// Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani
 //
 // MBS-BOS is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -33,9 +33,9 @@ int main(int argc, char **argv) {
   cout << " Multi-Body System Benchmark in OpenSim" << endl;
   cout << " Benchmark reference url: http://lim.ii.udc.es/mbsbenchmark/" << endl;
   cout << " Problem A01: Simple Pendulum Mechanism Model Creator" << endl;
-  cout << " Copyright (C) 2013, 2014 Luca Tagliapietra Michele Vivian Monica Reggiani" << endl;
+  cout << " Copyright (C) 2013-2015 Luca Tagliapietra, Michele Vivian, Elena Ceseracciu, and Monica Reggiani" << endl;
   cout << "--------------------------------------------------------------------------------" << endl;
-  
+
   if (argc != 2){
     cout << " ******************************************************************************" << endl;
     cout << " Multi-Body System Benchmark in OpenSim: Creator for Model A01" << endl;
@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     cout << " ******************************************************************************" << endl;
     exit(EXIT_FAILURE);
   }
-  
+
   const std::string dataDir = argv[1];
   cout << "Data directory:" + dataDir << endl;
 
@@ -52,29 +52,29 @@ int main(int argc, char **argv) {
   OpenSim::Model simplePendulum;
   simplePendulum.setName(modelName);
   simplePendulum.setAuthors("L.Tagliapietra, M. Vivian, M.Reggiani");
-  
+
   // Get a reference to the model's ground body
-  OpenSim::Body& ground = simplePendulum.getGroundBody(); 
+  OpenSim::Body& ground = simplePendulum.getGroundBody();
   simplePendulum.setGravity(gravityVector);
 
   SimTK::Inertia pointInertia = SimTK::Inertia(0,0,0);
   OpenSim::Body *point = new OpenSim::Body("Point", pointMass, pointMassCenter, pointInertia);
-  
+
   OpenSim::DisplayGeometry pointGeom(sphereGeometry);
   pointGeom.setScaleFactors(SimTK::Vec3(0.1,0.1,0.1));
   pointGeom.setName("pointMass");
-  point->updDisplayer()->updGeometrySet().insert(0,pointGeom);  
-  
+  point->updDisplayer()->updGeometrySet().insert(0,pointGeom);
+
   OpenSim::DisplayGeometry rodGeom(rodGeometry);
   rodGeom.setScaleFactors(SimTK::Vec3(0.01,pendulumLength,0.01));
   rodGeom.setName("rod");
   SimTK::Transform trans = SimTK::Transform(SimTK::Vec3(0,pendulumLength/2,0));
   rodGeom.setTransform(trans);
-  point->updDisplayer()->updGeometrySet().insert(1,rodGeom);  
- 
+  point->updDisplayer()->updGeometrySet().insert(1,rodGeom);
+
   SimTK::Vec3 locationInParent(0), locationInBody(0, pendulumLength,0), orientationInParent(0), orientationInBody(0);
-  
-  OpenSim::PinJoint *thetaJoint = new OpenSim::PinJoint("theta", ground, locationInParent, orientationInParent, *point, locationInBody, orientationInBody); 
+
+  OpenSim::PinJoint *thetaJoint = new OpenSim::PinJoint("theta", ground, locationInParent, orientationInParent, *point, locationInBody, orientationInBody);
   OpenSim::CoordinateSet& thetaCoordinateSet = thetaJoint -> upd_CoordinateSet();
   thetaCoordinateSet[0].setName("theta");
   thetaCoordinateSet[0].setDefaultValue(defaultAngle);
@@ -85,4 +85,3 @@ int main(int argc, char **argv) {
 
   cout << "Model stored in: " << dataDir << "/" << modelName << ".osim" << endl;
 }
-

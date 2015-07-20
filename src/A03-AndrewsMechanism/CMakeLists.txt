@@ -1,4 +1,4 @@
-##
+# Authors: Luca Tagliapietra, Elena Ceseracciu, and Monica Reggiani
 
 option(BUILD_A03_ANDREWS_MECHANISM "Build A03 Andrew's Mechanism example" ON)
 if(BUILD_A03_ANDREWS_MECHANISM)
@@ -32,4 +32,3 @@ if(BUILD_A03_ANDREWS_MECHANISM)
     target_link_libraries(AndrewsMechanismSimulate simulationManager ${OPENSIM_LIBRARIES})
 
 endif()
-
