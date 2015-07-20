@@ -57,6 +57,13 @@ The starting position of the system in shown in the previous figure and numerica
 
    Comparison between OpenSim simulation results for coordinate :math:`s` (colored line) and MBS benchmark reference value (black dashed line).
 
+Computational Performances
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To compute the simulation the developed implementation required 0.233 seconds.
+
+Results obtained using an Intel Core i5-4570 @ 3.2 GHz computer running Windows 8.1 64-bit.
+OpenSim official release used: 3.2.
+
 Videos
 ------
 

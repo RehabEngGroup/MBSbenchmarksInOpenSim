@@ -132,6 +132,13 @@ The simulation with OpenSim perfectly match the reference values as shown in the
 
    Comparison of the point F displacement between Andrew's mechanism model simulated in OpenSim (colored lines) and MBS benchmark reference values (black dashed lines).
 
+Computational Performances
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To compute the simulation the developed implementation required 0.384 seconds.
+
+Results obtained using an Intel Core i5-4570 @ 3.2 GHz computer running Windows 8.1 64-bit.
+OpenSim official release used: 3.2.
+
 Videos
 ------
 

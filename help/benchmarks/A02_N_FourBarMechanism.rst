@@ -61,6 +61,13 @@ The simulation with OpenSim perfectly matches the reference values.
 
    Displacement of reference point :math:`B_0` in OpenSim simulation (colored lines) and MBS benchmark reference (black dashed lines).
 
+Computational Performances
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+To compute the simulation the developed implementation required 0.455 seconds.
+
+Results obtained using an Intel Core i5-4570 @ 3.2 GHz computer running Windows 8.1 64-bit.
+OpenSim official release used: 3.2.
+
 Videos
 ------
 .. only:: html
