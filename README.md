@@ -5,13 +5,28 @@ MBS-BOS package is a set of programs that implement the Multi-Body Systems (MBS)
 The first objective is to compare output from these simulations with the validated reference solutions available in the MBS Benchmark package.
 The second objective is to provide C++ solutions for common problems that can be found in the implementation of simulations of multi-body systems.
 
+If you use MBS-BOS for research work, please cite:
+
+> L. Tagliapietra, M. Vivian, R. Caracciolo, and M. Reggiani. Evaluation of the biomechanical simulator OpenSim on a multi-body system benchmark. In Proceedings of the 2015 ECCOMAS Thematic Conference on Multibody Dynamics, Barcelona, July 2015 (2015)
+
 ### Latest Version
 MBS-BOS is an open project, released under GNU General Public License and hosted in GitHub:
 
 > https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim
 
 ### Documentation
-Descriptions of the five benchmark problems are available as PDF files in the *docs* directory available with the code.  
+User manual of MBS-BOS is provided together with source code and can be built both in PDF and HTML version.
+To build documentation just set to True the following CMake variables:
+
+- BUILD_SPHINX_MANUAL_HTML if you like HTML version
+
+- BUILD_SPHINX_MANUAL_LATEX if you prefer Latex/PDF version.
+
+A ready-to-use version of the documentation is also available on:
+
+- SimTK project [page][7] in PDF format
+
+- ghPages [visit][8] in HTML format.
 
 ### Requirements
 To compile MBS-BOS you need the following software:
@@ -19,6 +34,8 @@ To compile MBS-BOS you need the following software:
 1. OpenSim v. 3.2 [download][2]
 
 2. CMake [download][3]
+
+3. Sphinx (to build documentation) [download][5]
 
 Windows users also need to install:
 
@@ -50,7 +67,7 @@ The successful compilation of MBS-BOS requires OpenSim libraries. If you install
 
 2.Change your working directory to where you want to work with MBS-BOS
 
-3.Unzip the archive of MBS-BOS (available [here][5]) or download the software from the GitHub repository:
+3.Unzip the archive of MBS-BOS (available [here][6]) or download the software from the GitHub repository:
 
     git clone https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim.git
 
@@ -185,9 +202,13 @@ Need more information? Check the following links:
 
 - GitHub [click here][4]
 
+========
 
-[1]: http://lim.ii.udc.es/mbsbenchmark/
+[1]: http://iftomm-multibody.org/benchmark/browse/
 [2]: http://opensim.stanford.edu
 [3]: http://cmake.org
 [4]: http://github.com
-[5]: https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim
+[5]: http://sphinx-doc.org/index.html
+[6]: https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim
+[7]: https://simtk.org/home/mbs_bos
+[8]: http://rehabenggroup.github.io/MBSbenchmarksInOpenSim
