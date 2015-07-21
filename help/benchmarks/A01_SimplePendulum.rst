@@ -19,15 +19,19 @@ The Simple Pendulum is a planar mechanism composed of a point mass that is linke
 
 The following table reports the system configuration: the only force applied to the mechanism is the gravity.
 
-.. table:: System Properties and Configuration
-
-    ============================ =========================
-     :math:`P_1` mass             1.0 Kg
-     Bar length                   1.0 m
-     Bar mass                     0.0 Kg
-     :math:`{\theta}(0)`          :math:`{\pi}` rad
-     :math:`\dot{\theta}(0)`      0.0 rad/s
-    ============================ =========================
++--------------------------+--------------------------------+
+|         **System Properties and Configuration**           |
++==========================+================================+
+| :math:`P_1` mass         |    1.0 Kg                      |
++--------------------------+--------------------------------+
+| Bar length               |    1.0 m                       |
++--------------------------+--------------------------------+
+| Bar mass                 |    0.0 Kg                      |
++--------------------------+--------------------------------+
+| :math:`{\theta}(0)`      |    :math:`{\pi}` rad           |
++--------------------------+--------------------------------+
+| :math:`\dot{\theta}(0)`  |    0.0 rad/s                   |
++--------------------------+--------------------------------+
 
 
 Results
