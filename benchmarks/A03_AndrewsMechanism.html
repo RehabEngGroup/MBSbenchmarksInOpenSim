@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MBS Benchmark A03: Andrew’s Squeezer Mechanism &mdash; MBS Benchmarks in OpenSim .. Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/MBS-BOS.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '..',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MBS Benchmarks in OpenSim .. Documentation" href="../index.html" />
+    <link rel="next" title="MBS Benchmark A04: Bricard’s Mechanism" href="A04_BricardsMechanism.html" />
+    <link rel="prev" title="MBS Benchmark A02: N-Four-Bar Mechanism" href="A02_N_FourBarMechanism.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="A04_BricardsMechanism.html" title="MBS Benchmark A04: Bricard’s Mechanism"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="A02_N_FourBarMechanism.html" title="MBS Benchmark A02: N-Four-Bar Mechanism"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">.. Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mbs-benchmark-a03-andrew-s-squeezer-mechanism">
+<h1>MBS Benchmark A03: Andrew&#8217;s Squeezer Mechanism<a class="headerlink" href="#mbs-benchmark-a03-andrew-s-squeezer-mechanism" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="benchmark-objective">
+<h2>Benchmark Objective<a class="headerlink" href="#benchmark-objective" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>A03</strong> MSB benchmark problem has a very small time scale, thus making it difficult to simulate for solvers that cannot reach small time steps (below 1 ms) <a class="reference internal" href="../zreferences.html#gonzales" id="id1">[GDLC06]</a>.</p>
+</div>
+<div class="section" id="benchmark-description">
+<h2>Benchmark Description<a class="headerlink" href="#benchmark-description" title="Permalink to this headline">¶</a></h2>
+<p>Andrew&#8217;s squeezer mechanism <a class="reference internal" href="../zreferences.html#schiehlen" id="id2">[Sch97]</a> is a planar system composed of seven bodies interconnected through revolution joints, and driven by a motor located in O.
+The next figure presents the sketch of the mechanism.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/3MBS_Andrew.png"><img alt="Andrew." src="../_images/3MBS_Andrew.png" style="height: 200pt;" /></a>
+</div>
+<p>The following table reports the system configuration.</p>
+<table border="1" class="docutils">
+<caption><strong>System Properties and Configuration</strong></caption>
+<colgroup>
+<col width="68%" />
+<col width="32%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Spring coefficient</td>
+<td>4530 N/m</td>
+</tr>
+<tr class="row-even"><td>Spring rest length</td>
+<td>0.07785 m</td>
+</tr>
+<tr class="row-odd"><td>Motor torque</td>
+<td>0.033 N/m</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\beta_0\)</span></td>
+<td>-0.0620 rad</td>
+</tr>
+</tbody>
+</table>
+<p>Detailed information about the mechanical structure of each body is reported in next tables, referred to the reference systems presented in the next figure.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/3MBS_Andrew_OABCDEFG.png"><img alt="Andrew." src="../_images/3MBS_Andrew_OABCDEFG.png" style="height: 150pt;" /></a>
+</div>
+<table border="1" class="docutils">
+<caption><strong>Rod Elements Properties</strong></caption>
+<colgroup>
+<col width="8%" />
+<col width="18%" />
+<col width="18%" />
+<col width="18%" />
+<col width="27%" />
+<col width="11%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>&nbsp;</td>
+<td colspan="2">&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td></td>
+<td>X [m]</td>
+<td>Y [m]</td>
+<td>[Kg]</td>
+<td>[Kg <span class="math">\(m^2\)</span>]</td>
+<td>[m]</td>
+</tr>
+<tr class="row-odd"><td>OF</td>
+<td>0.00092</td>
+<td>0</td>
+<td>0.04325</td>
+<td>2.194e-6</td>
+<td>0.007</td>
+</tr>
+<tr class="row-even"><td>FE</td>
+<td>-0.0115</td>
+<td>0</td>
+<td>0.00365</td>
+<td>4.410e-7</td>
+<td>0.028</td>
+</tr>
+<tr class="row-odd"><td>EG</td>
+<td>0</td>
+<td>0.01421</td>
+<td>0.00706</td>
+<td>5.667e-7</td>
+<td>0.02</td>
+</tr>
+<tr class="row-even"><td>AG</td>
+<td>0.02308</td>
+<td>0.00916</td>
+<td>0.0705</td>
+<td>1.169e-5</td>
+<td>0.04</td>
+</tr>
+<tr class="row-odd"><td>AH</td>
+<td>-0.00449</td>
+<td>-0.01228</td>
+<td>0.05498</td>
+<td>1.912e-5</td>
+<td>0.04</td>
+</tr>
+<tr class="row-even"><td>HE</td>
+<td>-0.01421</td>
+<td>0</td>
+<td>0.00706</td>
+<td>5.667e-7</td>
+<td>0.02</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<caption>Triangular Element Properties, points defined in <span class="math">\(X_{BDE}-Y_{BDE}\)</span> SoR</caption>
+<colgroup>
+<col width="56%" />
+<col width="23%" />
+<col width="21%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Center of Mass (CoM) Coordinates</td>
+<td>0.01043 m (X)</td>
+<td>-0.0187 m (Y)</td>
+</tr>
+<tr class="row-even"><td>Mass</td>
+<td colspan="2">0.02372 Kg</td>
+</tr>
+<tr class="row-odd"><td>Inertia</td>
+<td colspan="2">5.255e-6 Kg <span class="math">\(m^2\)</span></td>
+</tr>
+<tr class="row-even"><td>Point B Coordinates</td>
+<td>0    m (X)</td>
+<td>0     m (Y)</td>
+</tr>
+<tr class="row-odd"><td>Point D Coordinates</td>
+<td>0.02 m (X)</td>
+<td>-0.018 m (Y)</td>
+</tr>
+<tr class="row-even"><td>Point E Coordinates</td>
+<td>0    m (X)</td>
+<td>-0.035 m (Y)</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<caption>Points in ground X-Y SoR</caption>
+<colgroup>
+<col width="23%" />
+<col width="35%" />
+<col width="42%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Point</td>
+<td>X [m]</td>
+<td>Y[m]</td>
+</tr>
+<tr class="row-even"><td>O</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>A</td>
+<td>-0.06934</td>
+<td>-0.00227</td>
+</tr>
+<tr class="row-even"><td>B</td>
+<td>0.03635</td>
+<td>0.03273</td>
+</tr>
+<tr class="row-odd"><td>C</td>
+<td>0.014</td>
+<td>0.072</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<caption>Initial Joints Position</caption>
+<colgroup>
+<col width="62%" />
+<col width="38%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">&nbsp;</th>
+<th class="head">&nbsp;</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><span class="math">\(\beta\)</span></td>
+<td>-0.0620</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\hat{OFE}\)</span></td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\hat{FEB}\)</span></td>
+<td>2.088</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\hat{FEG}\)</span></td>
+<td>2.341</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\hat{EGA}\)</span></td>
+<td>1.792</td>
+</tr>
+<tr class="row-odd"><td><span class="math">\(\hat{EHA}\)</span></td>
+<td>1.348</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>The dynamic simulation of the <strong>A03</strong> benchmark was executed for 0.05 s.
+The starting position of the simulation is defined by the values in Tab.~ref{TAB:InitialAngles}.</p>
+<p>The objective of the simulation is to measure the sytem total energy balance running the simulation in the minimum CPU time.
+The energy provided to the system by the driving torque is given by:</p>
+<blockquote>
+<div><span class="math">\(E - E_0 = \tau ( \beta - \beta_0)\)</span></div></blockquote>
+<p>where the pedix 0 indicate the initial condition and E is the mechanical energy of the system.</p>
+<p>According to this formulation, the total energy balance can be written as:</p>
+<blockquote>
+<div><span class="math">\(\Delta U = T + V  - E_0 - \tau(\beta - \beta_0)\)</span></div></blockquote>
+<p>where T is the kinetic energy and V the potential energy.</p>
+<p>Since no dissipation is present in the mechanism theoretical value for <span class="math">\(\Delta U\)</span> is zero.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/A03_energy.png"><img alt="A03 energy." src="../_images/A03_energy.png" style="height: 300pt;" /></a>
+<p class="caption">Figure 9: Total energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).</p>
+</div>
+<p>A second evaluation has been conducted measuring F point displacements and comparing them with the reference solution.
+The simulation with OpenSim perfectly match the reference values as shown in the next figure.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/A03_kinematics.png"><img alt="A03 kinematics." src="../_images/A03_kinematics.png" style="height: 300pt;" /></a>
+<p class="caption">Figure 10: Comparison of the point F displacement between Andrew&#8217;s mechanism model simulated in OpenSim (colored lines) and MBS benchmark reference values (black dashed lines).</p>
+</div>
+<div class="section" id="computational-performances">
+<h3>Computational Performances<a class="headerlink" href="#computational-performances" title="Permalink to this headline">¶</a></h3>
+<p>To compute the simulation the developed implementation required 0.384 seconds.</p>
+<p>Results obtained using an Intel Core i5-4570 &#64; 3.2 GHz computer running Windows 8.1 64-bit.
+OpenSim official release used: 3.2.</p>
+</div>
+</div>
+<div class="section" id="videos">
+<h2>Videos<a class="headerlink" href="#videos" title="Permalink to this headline">¶</a></h2>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/XOgsQz5iabs?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Andrew&#8217;s squeezing mechanism on MBS Benchmark library available at: <a class="reference external" href="http://goo.gl/cU4fPg">http://goo.gl/cU4fPg</a></li>
+<li>OpenSim implementation available at: <a class="reference external" href="http://goo.gl/R9tl3z">http://goo.gl/R9tl3z</a></li>
+<li>Videos of Andrew&#8217;s squeezing mechanism simulated in OpenSim available at: <a class="reference external" href="https://youtu.be/XOgsQz5iabs">https://youtu.be/XOgsQz5iabs</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MBS Benchmark A03: Andrew&#8217;s Squeezer Mechanism</a><ul>
+<li><a class="reference internal" href="#benchmark-objective">Benchmark Objective</a></li>
+<li><a class="reference internal" href="#benchmark-description">Benchmark Description</a></li>
+<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#computational-performances">Computational Performances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#videos">Videos</a></li>
+<li><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="A02_N_FourBarMechanism.html"
+                        title="previous chapter">MBS Benchmark A02: N-Four-Bar Mechanism</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="A04_BricardsMechanism.html"
+                        title="next chapter">MBS Benchmark A04: Bricard&#8217;s Mechanism</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/benchmarks/A03_AndrewsMechanism.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="A04_BricardsMechanism.html" title="MBS Benchmark A04: Bricard’s Mechanism"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="A02_N_FourBarMechanism.html" title="MBS Benchmark A02: N-Four-Bar Mechanism"
+             >previous</a> |</li>
+        <li><a href="../index.html">.. Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright Copyright 2015 Luca Tagliapietra, Michele Vivian, Monica Reggiani, and Elena Ceseracciu  .
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

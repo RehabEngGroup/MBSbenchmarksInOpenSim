@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>MBS Benchmark A02: N-Four-Bar Mechanism &mdash; MBS Benchmarks in OpenSim .. Documentation</title>
+    
+    <link rel="stylesheet" href="../_static/MBS-BOS.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '..',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="MBS Benchmarks in OpenSim .. Documentation" href="../index.html" />
+    <link rel="next" title="MBS Benchmark A03: Andrew’s Squeezer Mechanism" href="A03_AndrewsMechanism.html" />
+    <link rel="prev" title="MBS Benchmark A01: Simple Pendulum" href="A01_SimplePendulum.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="A03_AndrewsMechanism.html" title="MBS Benchmark A03: Andrew’s Squeezer Mechanism"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="A01_SimplePendulum.html" title="MBS Benchmark A01: Simple Pendulum"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">.. Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="mbs-benchmark-a02-n-four-bar-mechanism">
+<h1>MBS Benchmark A02: N-Four-Bar Mechanism<a class="headerlink" href="#mbs-benchmark-a02-n-four-bar-mechanism" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="benchmark-objective">
+<h2>Benchmark Objective<a class="headerlink" href="#benchmark-objective" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>A02</strong> MBS benchmark problem is a common example of a mechanism which undergoes singular configuration.</p>
+</div>
+<div class="section" id="benchmark-description">
+<h2>Benchmark Description<a class="headerlink" href="#benchmark-description" title="Permalink to this headline">¶</a></h2>
+<p>The N-four-bar mechanism is a common example of a mechanism which undergoes singular configuration.
+The system has N four-bar windows composed of 2N+1 links. It is an extension of the two four-bar mechanism proposed in <a class="reference internal" href="../zreferences.html#bayo" id="id1">[BA94]</a>.
+When the mechanism reaches the horizontal position, the number of the degrees of freedom instantaneously increase from 1 to N+1.
+Gravity acts on the negative y direction.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/2MBS_N-FourBar.png"><img alt="N-four-bar mechanism sketch." src="../_images/2MBS_N-FourBar.png" style="height: 200pt;" /></a>
+</div>
+<p>The following table reports the initial configuration of the system.</p>
+<table border="1" class="docutils">
+<caption>System Properties and Configuration</caption>
+<colgroup>
+<col width="72%" />
+<col width="28%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>N</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td>Link mass</td>
+<td>1.0 Kg</td>
+</tr>
+<tr class="row-odd"><td>Link length</td>
+<td>1.0 m</td>
+</tr>
+<tr class="row-even"><td><span class="math">\(\dot{B_{0}x}(0)\)</span></td>
+<td>1.0 m/s</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>The dynamic simulation of the <strong>A02</strong> benchmark was executed for a period of 10 seconds.
+The starting position of the simulation is shown in the previous picture with an initial speed for the point <span class="math">\(B_0\)</span> in the positive x-direction of 1 m/s.</p>
+<p>The accuracy of the simulation has been measured as the variation in the mechanical energy from the initial condition. Mechanical energy defined as the sum of potential and kinetic energy. Since no dissipation phenomena is included in problem definition, theoretical value for mechanical energy variation shoud be zero.</p>
+<p>Additional evaluation has been conducted comparing the simulated displacement of the point <span class="math">\(B_0\)</span>, with the reference solution provided by the problem authors <a class="reference internal" href="../zreferences.html#gonzales" id="id2">[GDLC06]</a>.</p>
+<p>The simulation with OpenSim perfectly matches the reference values.</p>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/A02_energy.png"><img alt="A02 energy." src="../_images/A02_energy.png" style="height: 300pt;" /></a>
+<p class="caption">Figure 5: Mechanical energy variation during simulation period from the initial condition. Theoretical variation (black line) and simulated one (blue line).</p>
+</div>
+<div class="align-center figure">
+<a class="reference internal image-reference" href="../_images/A02_kinematics.png"><img alt="A02 kinematics." src="../_images/A02_kinematics.png" style="height: 300pt;" /></a>
+<p class="caption">Figure 6: Displacement of reference point <span class="math">\(B_0\)</span> in OpenSim simulation (colored lines) and MBS benchmark reference (black dashed lines).</p>
+</div>
+<div class="section" id="computational-performances">
+<h3>Computational Performances<a class="headerlink" href="#computational-performances" title="Permalink to this headline">¶</a></h3>
+<p>To compute the simulation the developed implementation required 0.455 seconds.</p>
+<p>Results obtained using an Intel Core i5-4570 &#64; 3.2 GHz computer running Windows 8.1 64-bit.
+OpenSim official release used: 3.2.</p>
+</div>
+</div>
+<div class="section" id="videos">
+<h2>Videos<a class="headerlink" href="#videos" title="Permalink to this headline">¶</a></h2>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/eSesPhGIhco?feature=player_detailpage" frameborder="0" allowfullscreen="1">&nbsp;</iframe></div>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>N-four-bar mechanism on MBS Benchmark library available at: <a class="reference external" href="http://goo.gl/c50tLg">http://goo.gl/c50tLg</a></li>
+<li>OpenSim implementation available at: <a class="reference external" href="http://goo.gl/R9tl3z">http://goo.gl/R9tl3z</a></li>
+<li>Video of N-four-bar mechanism simulated in OpenSimn available at: <a class="reference external" href="https://youtu.be/eSesPhGIhco">https://youtu.be/eSesPhGIhco</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MBS Benchmark A02: N-Four-Bar Mechanism</a><ul>
+<li><a class="reference internal" href="#benchmark-objective">Benchmark Objective</a></li>
+<li><a class="reference internal" href="#benchmark-description">Benchmark Description</a></li>
+<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#computational-performances">Computational Performances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#videos">Videos</a></li>
+<li><a class="reference internal" href="#download">Download</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="A01_SimplePendulum.html"
+                        title="previous chapter">MBS Benchmark A01: Simple Pendulum</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="A03_AndrewsMechanism.html"
+                        title="next chapter">MBS Benchmark A03: Andrew&#8217;s Squeezer Mechanism</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/benchmarks/A02_N_FourBarMechanism.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="A03_AndrewsMechanism.html" title="MBS Benchmark A03: Andrew’s Squeezer Mechanism"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="A01_SimplePendulum.html" title="MBS Benchmark A01: Simple Pendulum"
+             >previous</a> |</li>
+        <li><a href="../index.html">.. Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright Copyright 2015 Luca Tagliapietra, Michele Vivian, Monica Reggiani, and Elena Ceseracciu  .
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
