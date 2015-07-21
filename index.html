@@ -46,20 +46,37 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mbs-benchmarks-in-opensim">
-<h1><a class="toc-backref" href="#id1">MBS Benchmarks in OpenSim</a><a class="headerlink" href="#mbs-benchmarks-in-opensim" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="multi-body-systems-benchmark-in-opensim-mbs-bos">
+<h1><a class="toc-backref" href="#id3">Multi-Body Systems Benchmark in OpenSim (MBS-BOS)</a><a class="headerlink" href="#multi-body-systems-benchmark-in-opensim-mbs-bos" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#mbs-benchmarks-in-opensim" id="id1">MBS Benchmarks in OpenSim</a><ul>
-<li><a class="reference internal" href="#benchmarks" id="id2">Benchmarks</a></li>
-<li><a class="reference internal" href="#acknowledgements" id="id3">Acknowledgements</a></li>
+<li><a class="reference internal" href="#multi-body-systems-benchmark-in-opensim-mbs-bos" id="id3">Multi-Body Systems Benchmark in OpenSim (MBS-BOS)</a><ul>
+<li><a class="reference internal" href="#mbs-bos" id="id4">MBS-BOS</a></li>
+<li><a class="reference internal" href="#latest-version" id="id5">Latest Version</a></li>
+<li><a class="reference internal" href="#benchmark-problems" id="id6">Benchmark Problems</a></li>
+<li><a class="reference internal" href="#acknowledgements" id="id7">Acknowledgements</a></li>
 </ul>
 </li>
 </ul>
 </div>
-<div class="section" id="benchmarks">
-<h2><a class="toc-backref" href="#id2">Benchmarks</a><a class="headerlink" href="#benchmarks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mbs-bos">
+<h2><a class="toc-backref" href="#id4">MBS-BOS</a><a class="headerlink" href="#mbs-bos" title="Permalink to this headline">¶</a></h2>
+<p>MBS-BOS package is a set of programs that implement the Multi-Body Systems (MBS) Benchmark <a class="reference internal" href="zreferences.html#gonzales" id="id1">[GDLC06]</a> using the OpenSim <a class="reference internal" href="zreferences.html#opensim" id="id2">[DAA+07]</a> APIs.</p>
+<p>The first objective is to assess OpenSim performances in simulating mechanical and robotic devices both in terms of accuracy and solving time.</p>
+<p>The second objective is to provide C++ solutions for common problems that can be found in the implementation of simulations of multi-body systems.</p>
+<p>If you use MBS-BOS for research work, please cite:</p>
+<p><tt class="docutils literal"><span class="pre">L.</span> <span class="pre">Tagliapietra,</span> <span class="pre">M.</span> <span class="pre">Vivian,</span> <span class="pre">R.</span> <span class="pre">Caracciolo,</span> <span class="pre">and</span> <span class="pre">M.</span> <span class="pre">Reggiani.</span> <span class="pre">Evaluation</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">biomechanical</span> <span class="pre">simulator</span> <span class="pre">OpenSim</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">multi-body</span> <span class="pre">system</span> <span class="pre">benchmark.</span> <span class="pre">In</span> <span class="pre">Proceedings</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">2015</span> <span class="pre">ECCOMAS</span> <span class="pre">Thematic</span> <span class="pre">Conference</span> <span class="pre">on</span> <span class="pre">Multibody</span> <span class="pre">Dynamics,</span> <span class="pre">Barcelona,</span> <span class="pre">July</span> <span class="pre">2015</span> <span class="pre">(2015)</span></tt></p>
+</div>
+<div class="section" id="latest-version">
+<h2><a class="toc-backref" href="#id5">Latest Version</a><a class="headerlink" href="#latest-version" title="Permalink to this headline">¶</a></h2>
+<p>MBS-BOS is an open project, released under GNU General Public License and hosted in GitHub:</p>
+<p><a class="reference external" href="https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim">https://github.com/RehabEngGroup/MBSbenchmarksInOpenSim</a></p>
+<p>A PDF version of this documentation can be found also on the SimTK.org page of this project:</p>
+<p><a class="reference external" href="https://simtk.org/home/mbs_bos">https://simtk.org/home/mbs_bos</a></p>
+</div>
+<div class="section" id="benchmark-problems">
+<h2><a class="toc-backref" href="#id6">Benchmark Problems</a><a class="headerlink" href="#benchmark-problems" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="benchmarks/A01_SimplePendulum.html">MBS Benchmark A01: Simple Pendulum</a><ul>
@@ -122,7 +139,7 @@
 </div>
 </div>
 <div class="section" id="acknowledgements">
-<h2><a class="toc-backref" href="#id3">Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Acknowledgements</a><a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
 <p>MBS Benchmarks in Opensim have been developed by the <a class="reference external" href="http://reg.gest.unipd.it">Rehabilitation Engineering Group</a>, <a class="reference external" href="http://www.gest.unipd.it">Dipartimento di Tecnica e Gestione dei Sistemi Industriali</a>,
 <a class="reference external" href="http://www.unipd.it">Universita&#8217; degli Studi di Padova</a>.</p>
 <table border="1" class="docutils">
@@ -159,8 +176,10 @@ European Commission (<a class="reference external" href="http://www.biomotprojec
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">MBS Benchmarks in OpenSim</a><ul>
-<li><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li><a class="reference internal" href="#">Multi-Body Systems Benchmark in OpenSim (MBS-BOS)</a><ul>
+<li><a class="reference internal" href="#mbs-bos">MBS-BOS</a></li>
+<li><a class="reference internal" href="#latest-version">Latest Version</a></li>
+<li><a class="reference internal" href="#benchmark-problems">Benchmark Problems</a></li>
 <li><a class="reference internal" href="#acknowledgements">Acknowledgements</a><ul>
 <li><a class="reference internal" href="#index-and-search">Index and Search</a></li>
 </ul>

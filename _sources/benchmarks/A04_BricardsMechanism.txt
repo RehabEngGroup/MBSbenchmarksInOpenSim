@@ -20,15 +20,15 @@ The system is composed of five rods with square cross section and six revolute j
 
 The following table reports system properties.
 
-.. _systemproperties04:
-
-.. table:: **System Properties and Configuration**
-
-    ============================ ============
-     Rods mass                    1.0 kg
-     Rods length                  1.0 m
-     Square cross section length  0.1 m
-    ============================ ============
++------------------------------+--------------------------------+
+|         **System Properties and Configuration**               |
++==============================+================================+
+| Rod length                   |    1.0 m                       |
++------------------------------+--------------------------------+
+| Rod mass                     |    1.0 Kg                      |
++------------------------------+--------------------------------+
+| Square cross section length  |                                |
++------------------------------+--------------------------------+
 
 Results
 -------
