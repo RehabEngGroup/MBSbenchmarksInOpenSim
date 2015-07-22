@@ -13,6 +13,6 @@ find_package(OpenSim REQUIRED)
 
 add_subdirectory(lib)
 add_subdirectory(src)
-
+add_subdirectory(docs)
 
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
