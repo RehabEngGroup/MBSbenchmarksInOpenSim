@@ -19,10 +19,10 @@ sys.path.insert(0, r'@conf_path@')
 source_suffix = '.rst'
 master_doc = 'index'
 
-project = 'MBS Benchmarks in OpenSim Reference Documentation'
+project = 'MultyBody Systems Benchmark in OpenSim (MBS-BOS) - User Manual'
 copyright = '@conf_copyright@'
 version = '@conf_version@' # feature version
-release = '@conf_release@' # full version string
+release = '2.0' # full version string
 
 primary_domain = 'cmake'
 
@@ -96,7 +96,7 @@ latex_elements = {}
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'MBS-BOSUserGuide.tex', u'MBS Benchmarks in OpenSim Reference Documentation ',
+  ('index', 'MBS-BOSUserGuide.tex', u'MultiBody Systems Benchmark in OpenSim (MBS-BOS) - User Manual ',
    u'L. Tagliapietra, M. Vivian, M. Reggiani, E. Ceseracciu', 'manual'),
 ]
 

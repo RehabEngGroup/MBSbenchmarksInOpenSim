@@ -1,4 +1,4 @@
-.. title:: MBS Benchmarks in OpenSim  Reference Documentation
+.. title:: MultyBody Systems Benchmarks in OpenSim (MBS-BOS) - User Manual
 
 
 Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
@@ -12,7 +12,7 @@ Multi-Body Systems Benchmark in OpenSim (MBS-BOS)
 MBS-BOS
 ##############
 
-MBS-BOS package is a set of programs that implement the Multi-Body Systems (MBS) Benchmark :cite:`2006:gonzales` using the OpenSim :cite:`2007:opensim` APIs.
+MBS-BOS package is a set of programs that implement the MultiBody Systems (MBS) Benchmark :cite:`2006:gonzales` using the OpenSim :cite:`2007:opensim` APIs.
 
 The first objective is to assess OpenSim performances in simulating mechanical and robotic devices both in terms of accuracy and solving time.
 
