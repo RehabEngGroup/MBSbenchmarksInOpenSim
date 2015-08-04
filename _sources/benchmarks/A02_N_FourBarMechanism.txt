@@ -71,11 +71,14 @@ To compute the simulation the developed implementation required 0.455 seconds.
 Results obtained using an Intel Core i5-4570 @ 3.2 GHz computer running Windows 8.1 64-bit.
 OpenSim official release used: 3.2.
 
+Comparision with other dynamic engines has been conducted submitting the obtained results to the benchmark collaborative library.
+Click `here <http://goo.gl/c50tLg>`_ to see the comparison results.
+
 Videos
 ------
 .. only:: html
 
-    .. youtube:: https://www.youtube.com/watch?v=eSesPhGIhco
+    .. youtube:: eSesPhGIhco
 
 .. only:: latex
 
