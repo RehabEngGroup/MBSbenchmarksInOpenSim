@@ -110,4 +110,4 @@ rst_epilog = """
 """
 latex_show_pagerefs = @latex_show_pagerefs@
 latex_show_urls = 'footnote'
-latex_use_parts = 'true'
+latex_use_parts = True
